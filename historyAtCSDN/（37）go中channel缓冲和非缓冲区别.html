@@ -1,0 +1,46 @@
+
+                    <!-- flowchart 箭头图标 勿删 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"/>
+                    </svg>
+                                            <p>&#x5206;&#x6790;&#x4E0B;&#x9762;&#x4E00;&#x9053;&#x9898;&#x76EE;&#xFF0C;&#x518D;&#x6B21;&#x611F;&#x53D7;channel&#x7684;&#x7F13;&#x51B2;&#x548C;&#x975E;&#x7F13;&#x51B2;&#x7684;&#x533A;&#x522B;</p>
+<pre><code class="prism language-go"><span class="token comment">// &#x9519;&#x8BEF;&#x5199;&#x6CD5;</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>set <span class="token operator">*</span>threadSafeSet<span class="token punctuation">)</span> <span class="token function">Iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">{</span>
+	ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		set<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+		<span class="token keyword">for</span> elem <span class="token operator">:=</span> <span class="token keyword">range</span> set<span class="token punctuation">.</span>s <span class="token punctuation">{</span>
+			ch <span class="token operator">&lt;-</span> elem
+		<span class="token punctuation">}</span>
+
+		<span class="token function">close</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>
+		set<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">return</span> ch
+<span class="token punctuation">}</span>
+
+<span class="token comment">// &#x6B63;&#x786E;&#x5199;&#x6CD5;</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>set <span class="token operator">*</span>threadSafeSet<span class="token punctuation">)</span> <span class="token function">Iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ch := make(chan interface{}) // &#x89E3;&#x9664;&#x6CE8;&#x91CA;&#x770B;&#x770B;&#xFF01;</span>
+    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">len</span><span class="token punctuation">(</span>set<span class="token punctuation">.</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        set<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">for</span> elem<span class="token punctuation">,</span>value <span class="token operator">:=</span> <span class="token keyword">range</span> set<span class="token punctuation">.</span>s <span class="token punctuation">{</span>
+            ch <span class="token operator">&lt;-</span> elem
+            <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;Iter:&quot;</span><span class="token punctuation">,</span>elem<span class="token punctuation">,</span>value<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token function">close</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>
+        set<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> ch
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>&#x5BF9;&#x4E8E;&#x9519;&#x8BEF;&#x7684;&#x90A3;&#x6BB5;&#x4EE3;&#x7801;&#xFF0C;&#x7531;&#x4E8E;channel&#x672A;&#x6307;&#x5B9A;&#x5BB9;&#x91CF;&#xFF0C;&#x6240;&#x4EE5;&#x662F;&#x65E0;&#x7F13;&#x51B2;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x8C03;&#x7528;Iter&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x5199;&#x5165;&#x540E;&#x4FBF;&#x4F1A;&#x963B;&#x585E;&#xFF08;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x5F80;chan&#x4E2D;&#x6210;&#x529F;&#x5199;&#x5165;&#x4E86;&#x6570;&#x636E;&#xFF0C;&#x4F46;&#x662F;&#x5199;&#x5165;&#x5B8C;&#x4E86;&#x4E0D;&#x8FD4;&#x56DE;&#xFF0C;&#x4EE3;&#x7801;&#x963B;&#x585E;&#x5728;ch &lt;- elem&#x4E00;&#x884C;&#xFF0C;&#x4E0D;&#x4F1A;&#x91CD;&#x65B0;&#x8FDB;&#x5165;for&#x5FAA;&#x73AF;&#xFF09;&#xFF0C;&#x65E0;&#x6CD5;&#x5B9E;&#x73B0;&#x904D;&#x5386;&#x6574;&#x4E2A;slice&#x3002;&#x6B63;&#x786E;&#x7684;&#x90A3;&#x6BB5;&#x4EE3;&#x7801;&#xFF0C;&#x5728;&#x5B9A;&#x4E49;channel&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6307;&#x5B9A;&#x4E86;&#x5BB9;&#x91CF;&#xFF0C;&#x6240;&#x4EE5;&#x662F;&#x6709;&#x7F13;&#x51B2;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x6307;&#x5B9A;&#x7684;&#x5BB9;&#x91CF;&#x6B63;&#x597D;&#x662F;slice&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x904D;&#x5386;&#x6574;&#x4E2A;slice&#x3002;</p>
+
+                                    

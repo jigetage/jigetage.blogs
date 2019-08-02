@@ -1,0 +1,41 @@
+
+                                            <pre class="has"><code>
+#include &lt;iostream&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+ 
+char *generateRandString(char *str, const int len)
+{
+// &#x4EA7;&#x751F;&#x968F;&#x673A;&#x6570;
+	srand(time(NULL));
+	int i;
+	for (i = 0; i &lt; len; ++i)
+	{
+		switch ((rand() % 3))
+		{
+		case 1:
+			str[i] = &apos;A&apos; + rand() % 26;
+			break;
+		case 2:
+			str[i] = &apos;a&apos; + rand() % 26;
+			break;
+		default:
+			str[i] = &apos;0&apos; + rand() % 10;
+			break;
+		}
+	}
+	str[++i] = &apos;\0&apos;;
+	return str;
+}
+ 
+int main(void)
+{
+ 
+	char buffer[8];
+// &#x751F;&#x6210;&#x4E00;&#x4E2A;4&#x4F4D;&#x968F;&#x673A;&#x5B57;&#x7B26;&#x4E32;
+	std::cout &lt;&lt; generateRandString(buffer, 4) &lt;&lt; std::endl;
+	system(&quot;pause&quot;);
+	return 0;
+}</code></pre>
+
+<p>&#xA0;</p>                                    

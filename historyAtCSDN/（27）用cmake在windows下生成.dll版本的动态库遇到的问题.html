@@ -1,0 +1,19 @@
+
+                                            <p>&#x7528;cmake&#x5728;windows&#x4E0B;&#x751F;&#x6210;.dll&#x7248;&#x672C;&#x7684;&#x52A8;&#x6001;&#x5E93;&#xFF0C;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+
+<p>&#x95EE;&#x9898;1&#xFF0C;&#x751F;&#x6210;&#x7684;dll&#x540D;&#x5B57;&#x6709;&#x95EE;&#x9898;&#x3002;</p>
+
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x91C7;&#x7528;<code>extern{}</code>&#x5305;&#x56F4;&#x4F4F;&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x4EE3;&#x7801;</p>
+
+<p>&#x95EE;&#x9898;2&#xFF0C;&#x751F;&#x6210;&#x7684;dll&#x6CA1;&#x6709;&#x63A5;&#x53E3;&#xFF0C;&#x6216;&#x8005;&#x53EA;&#x751F;&#x6210;&#x4E86;dll&#xFF0C;&#x800C;&#x6CA1;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x5BFC;&#x5165;&#x5E93;.lib&#x3002;</p>
+
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x6DFB;&#x52A0;dllexport&#xFF0C;&#x65B9;&#x6CD5;&#xFF1A;</p>
+
+<p><code>#ifdef BUILD_XXX_DLL #define IO_XXX_DLL __declspec(dllexport) #else #define IO_XXX_DLL __declspec(dllimport) #endif</code></p>
+
+<p>&#x5176;&#x4E2D;BUILD_XXX_DLL&#x53EF;&#x4EE5;&#x5728;cmakelists.txt&#x6587;&#x4EF6;&#x4E2D;&#x901A;&#x8FC7;<code>Add_Definitions(-DUNICODE -D_UNICODE -DBUILD_XXX_DLL)</code>&#x6DFB;&#x52A0;</p>
+
+<p>&#x95EE;&#x9898;3&#xFF1A;c2485 export &#x65E0;&#x6CD5;&#x8BC6;&#x522B;&#x6269;&#x5C55;&#x7279;&#x6027;&#x3002;</p>
+
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x5C06;export&#x6362;&#x6210;dllexport&#x5373;&#x53EF;&#x3002;</p>
+                                    

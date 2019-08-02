@@ -1,0 +1,29 @@
+
+                                            <p>&#x603B;&#x7ED3;&#xFF1A;&#x5148;&#x6839;&#x636E;plugin name&#x548C;plugin id&#x83B7;&#x53D6;obs source&#xFF0C;&#x518D;&#x6839;&#x636E;obs source&#x83B7;&#x53D6;obs properties&#xFF0C;&#x518D;&#x904D;&#x5386;obs properties&#x5F97;&#x5230;&#x6BCF;&#x4E00;&#x6761;&#x5C5E;&#x6027;&#x3002;</p>
+
+<p>&#x5177;&#x4F53;api&#x5982;&#x4E0B;&#xFF1A;</p>
+
+<p>1&#x3001;&#x83B7;&#x53D6;obs source</p>
+
+<pre class="has"><code>obs_source_create(SOURCE_ID, SOURCE_NAME, NULL, nullptr);</code></pre>
+
+<p>2&#x3001;&#x83B7;&#x53D6;obs properties</p>
+
+<pre class="has"><code>/**
+ * Returns the properties list for a specific existing source.  Free with
+ * obs_properties_destroy
+ */
+EXPORT obs_properties_t *obs_source_properties(const obs_source_t *source);</code></pre>
+
+<p>3&#x3001;&#x904D;&#x5386;properties</p>
+
+<pre class="has"><code>// &#x904D;&#x5386;
+obs_property_t *property = obs_properties_first(properties);
+
+while (property)
+{
+    handling(properity);
+    obs_property_next(&amp;property);
+}</code></pre>
+
+<p>&#xA0;</p>                                    

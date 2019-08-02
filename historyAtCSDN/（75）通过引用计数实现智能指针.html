@@ -1,0 +1,76 @@
+
+                                            <p>&#x901A;&#x8FC7;&#x6A21;&#x677F;&#x548C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x667A;&#x80FD;&#x6307;&#x9488;&#xFF0C;&#x9700;&#x8981;&#x4E24;&#x4E2A;&#x7C7B;&#xFF1A;&#x667A;&#x80FD;&#x6307;&#x9488;&#x7C7B;SmartPtr&#xFF0C;&#x548C;&#x667A;&#x80FD;&#x6307;&#x9488;&#x8F85;&#x52A9;&#x7C7B;SmartPtrHelper&#xFF0C;&#x5176;&#x4E2D;&#x7528;&#x6237;&#x63A5;&#x89E6;&#x5230;&#x662F;SmartPtr&#x7C7B;&#xFF0C;&#x800C;SmartPtr&#x7C7B;&#x901A;&#x8FC7;SmartPtrHelper&#x7BA1;&#x7406;&#x6307;&#x9488;&#x7684;&#x5185;&#x5B58;&#x548C;&#x8BA1;&#x6570;&#x3002;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;&#xFF1A;</p>
+
+<p>SmartPtrHelper&#x7C7B;</p>
+
+<pre class="has"><code>//&#x6A21;&#x677F;&#x7C7B;&#x4F5C;&#x4E3A;&#x53CB;&#x5143;&#x65F6;&#x8981;&#x5148;&#x6709;&#x58F0;&#x660E;
+template &lt;typename T&gt;
+class SmartPtr;
+
+template &lt;typename T&gt;
+class SmartPtrHelper //&#x8F85;&#x52A9;&#x7C7B;
+{
+  private:
+    //&#x8BE5;&#x7C7B;&#x6210;&#x5458;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x5168;&#x90E8;&#x4E3A;private&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x60F3;&#x8BA9;&#x7528;&#x6237;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x8BE5;&#x7C7B;
+    friend class SmartPtr&lt;T&gt;; //&#x5B9A;&#x4E49;&#x667A;&#x80FD;&#x6307;&#x9488;&#x7C7B;&#x4E3A;&#x53CB;&#x5143;&#xFF0C;&#x56E0;&#x4E3A;&#x667A;&#x80FD;&#x6307;&#x9488;&#x7C7B;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x64CD;&#x7EB5;&#x8F85;&#x52A9;&#x7C7B;
+
+    //&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;&#x4E3A;&#x57FA;&#x7840;&#x5BF9;&#x8C61;&#x7684;&#x6307;&#x9488;
+    SmartPtrHelper(T *ptr) : p(ptr), count(1) {}
+
+    //&#x6790;&#x6784;&#x51FD;&#x6570;
+    ~SmartPtrHelper()
+    {
+        delete p;
+        p = nullptr;
+    }
+    //&#x5F15;&#x7528;&#x8BA1;&#x6570;
+    int count = 0;
+
+    //&#x57FA;&#x7840;&#x5BF9;&#x8C61;&#x6307;&#x9488;
+    T *p = nullptr;
+};</code></pre>
+
+<p>SmartPtr&#x7C7B;</p>
+
+<pre class="has"><code>template &lt;typename T&gt;
+class SmartPtr //&#x667A;&#x80FD;&#x6307;&#x9488;&#x7C7B;
+{
+public:
+    SmartPtr(T *ptr) : rp(new SmartPtrHelper&lt;T&gt;(ptr)) {}         //&#x6784;&#x9020;&#x51FD;&#x6570;
+    SmartPtr(const SmartPtr&lt;T&gt; &amp;sp) : rp(sp.rp) { ++rp-&gt;count; } //&#x590D;&#x5236;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x5C06;&#x5DF2;&#x7ECF;&#x7BA1;&#x7406;&#x6307;&#x9488;&#x7684;&#x667A;&#x80FD;&#x6307;&#x9488;&#x5BF9;&#x8C61;&#x8D4B;&#x503C;&#x7ED9;&#x65B0;&#x7684;&#x667A;&#x80FD;&#x6307;&#x9488;&#x5BF9;&#x8C61;&#xFF0C;&#x987A;&#x5229;&#x7684;&#x5B8C;&#x6210;&#x4E86;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7684;&#x4F20;&#x9012;&#x3002;
+                                                                 //&#x8FDB;&#x800C;&#xFF0C;&#x5728;&#x51FD;&#x6570;&#x4F53;&#x4E2D;&#x5C06;&#x81EA;&#x5DF1;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x8FDB;&#x884C;++&#x64CD;&#x4F5C;&#xFF0C;&#x5B8C;&#x6210;&#x4E86;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4E0E;&#x5B9E;&#x9645;&#x88AB;&#x7BA1;&#x7406;&#x5BF9;&#x8C61;&#x4E2A;&#x6570;&#x7684;&#x540C;&#x6B65;&#x3002;
+    SmartPtr &amp;operator=(const SmartPtr&lt;T&gt; &amp;rhs)
+    {                         //&#x91CD;&#x8F7D;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x7B26;
+        ++rhs.rp-&gt;count;      //&#x9996;&#x5148;&#x5C06;&#x53F3;&#x64CD;&#x4F5C;&#x6570;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x52A0;1&#xFF0C;
+        if (--rp-&gt;count == 0) //&#x7136;&#x540E;&#x5C06;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x51CF;1&#xFF0C;&#x53EF;&#x4EE5;&#x5E94;&#x5BF9;&#x81EA;&#x8D4B;&#x503C;
+            delete rp;
+        rp = rhs.rp;
+        return *this;
+    }
+
+    T &amp;operator*() //&#x91CD;&#x8F7D;*&#x64CD;&#x4F5C;&#x7B26;
+    {
+        return *(rp-&gt;p);
+    }
+    T *operator-&gt;() //&#x91CD;&#x8F7D;-&gt;&#x64CD;&#x4F5C;&#x7B26;
+    {
+        return rp-&gt;p;
+    }
+
+    ~SmartPtr() //&#x6790;&#x6784;&#x51FD;&#x6570;
+    {                         
+        if (--rp-&gt;count == 0) //&#x5F53;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x51CF;&#x4E3A;0&#x65F6;&#xFF0C;&#x5220;&#x9664;&#x8F85;&#x52A9;&#x7C7B;&#x5BF9;&#x8C61;&#x6307;&#x9488;&#xFF0C;&#x4ECE;&#x800C;&#x5220;&#x9664;&#x57FA;&#x7840;&#x5BF9;&#x8C61;
+        {
+            delete rp;
+        }
+        else
+        {
+            cout &lt;&lt; &quot;&#x8FD8;&#x6709;&quot; &lt;&lt; rp-&gt;count &lt;&lt; &quot;&#x4E2A;&#x6307;&#x9488;&#x6307;&#x5411;&#x57FA;&#x7840;&#x5BF9;&#x8C61;&quot; &lt;&lt; endl;
+        }
+    }
+
+private:
+    SmartPtrHelper&lt;T&gt; *rp = nullptr; //&#x8F85;&#x52A9;&#x7C7B;&#x5BF9;&#x8C61;&#x6307;&#x9488;
+};</code></pre>
+
+<p>&#xA0;</p>                                    

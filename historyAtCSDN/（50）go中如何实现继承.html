@@ -1,0 +1,30 @@
+
+                                            <p>go&#x4E2D;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x5F52;&#x7EB3;&#x4E3A;2&#x65B9;&#x9762;&#xFF0C;&#x7ED3;&#x6784;&#x4F53;struct&#x548C;&#x63A5;&#x53E3;interface&#x3002;</p>
+
+<p>&#x5BF9;&#x4E8E;&#x7ED3;&#x6784;&#x4F53;struct&#xFF0C;&#x901A;&#x8FC7;&#x533F;&#x540D;&#x6210;&#x5458;&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x7EE7;&#x627F;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;Student&#x7EE7;&#x627F;&#x4E86;Men</p>
+
+<pre class="has"><code>type Men struct {
+    name string
+    age int
+}
+
+type Student struct {
+    Men
+    score int
+}</code></pre>
+
+<p>&#x5BF9;&#x4E8E;&#x63A5;&#x53E3;interface&#xFF0C;&#x901A;&#x8FC7;&#x76F4;&#x63A5;&#x5F15;&#x5165;&#x53E6;&#x4E00;&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x7EE7;&#x627F;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;ReadWriter&#x7EE7;&#x627F;&#x4E86;Reader&#x548C;Writer</p>
+
+<pre class="has"><code>type Reader interface {
+}
+
+type Writer interface {
+}
+
+type ReadWriter interface {
+	Reader
+	Writer
+}</code></pre>
+
+<p>&#xA0;</p>
+                                    

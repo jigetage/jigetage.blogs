@@ -1,0 +1,94 @@
+
+                                            <p>electron&#x57FA;&#x4E8E;Chrome&#x8FDB;&#x884C;&#x9875;&#x9762;&#x663E;&#x793A;&#xFF0C;&#x5229;&#x7528;node&#x4E0E;&#x7CFB;&#x7EDF;&#x5E95;&#x5C42;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5B66;&#x4E60;&#x4E00;&#x4E9B;node&#x76F8;&#x5173;&#x77E5;&#x8BC6;&#xFF0C;&#x5BF9;&#x5199;&#x597D;&#x4EE3;&#x7801;&#x5F88;&#x6709;&#x5FC5;&#x8981;&#x3002;</p><p>&#x9996;&#x5148;&#x8BB2;&#x4E00;&#x4E0B;require&#x6A21;&#x5757;&#x3002;</p><p></p><h4>1 require&#x6A21;&#x5757;</h4><p></p><div><div><h4>1.1&#x6A21;&#x5757;&#x5F15;&#x7528;</h4><p>&#x6A21;&#x5757;&#x5F15;&#x7528;&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p><pre><code class="language-javascript"><code class="javascript"><span class="hljs-keyword">var</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;math&apos;</span>);
+</code></code></pre><p>&#x5728;CommonJS&#x89C4;&#x8303;&#x4E2D;&#xFF0C;&#x5B58;&#x5728;require()&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x63A5;&#x6536;&#x6A21;&#x5757;&#x6807;&#x8BC6;&#xFF0C;&#x4EE5;&#x6B64;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#x7684;API&#x5230;&#x5F53;&#x524D;&#x4E0A;&#x4E0B;&#x6587;&#x3002;</p><h4>1.2 &#x6A21;&#x5757;&#x5B9A;&#x4E49;</h4><p>&#x5728;&#x6A21;&#x5757;&#x4E2D;&#xFF0C;&#x4E0A;&#x4E0B;&#x6587;&#x63D0;&#x4F9B;require()&#x65B9;&#x6CD5;&#x6765;&#x5F15;&#x5165;&#x5916;&#x90E8;&#x6A21;&#x5757;&#x3002;&#x5BF9;&#x5E94;&#x5F15;&#x5165;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4E0A;&#x4E0B;&#x6587;&#x63D0;&#x4F9B;&#x4E86;exports&#x5BF9;&#x8C61;&#x7528;&#x4E8E;&#x5BFC;&#x51FA;&#x5F53;&#x524D;&#x6A21;&#x5757;&#x7684;&#x65B9;&#x6CD5;&#x6216;&#x8005;&#x53D8;&#x91CF;&#xFF0C;&#x5E76;&#x4E14;&#x5B83;&#x662F;&#x552F;&#x4E00;&#x5BFC;&#x51FA;&#x7684;&#x51FA;&#x53E3;&#x3002;&#x5728;&#x6A21;&#x5757;&#x4E2D;&#xFF0C;&#x8FD8;&#x5B58;&#x5728;&#x4E00;&#x4E2A;module&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x4EE3;&#x8868;&#x6A21;&#x5757;&#x672C;&#x8EAB;&#xFF0C;&#x800C;exports&#x662F;module&#x7684;&#x5C5E;&#x6027;&#x3002;</p><p>&#x5728;Node&#x4E2D;&#xFF0C;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#xFF0C;&#x5C06;&#x65B9;&#x6CD5;&#x6302;&#x8F7D;&#x5728;exports&#x5BF9;&#x8C61;&#x4E0A;&#x4F5C;&#x4E3A;&#x5C5E;&#x6027;&#x5373;&#x53EF;&#x5B9A;&#x4E49;&#x5BFC;&#x51FA;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p><pre><code class="language-javascript"><code class="javascript"><span class="hljs-comment">//math.js</span>
+exports.add = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span>, i = <span class="hljs-number">0</span>, args = <span class="hljs-built_in">arguments</span>, l = args.length;
+    <span class="hljs-keyword">while</span> (i &lt; l) {
+        sum += args[i++];
+    }
+    <span class="hljs-keyword">return</span> sum;
+}
+</code></code></pre><p>&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;require()&#x65B9;&#x6CD5;&#x5F15;&#x5165;&#x6A21;&#x5757;&#x540E;&#xFF0C;&#x5C31;&#x80FD;&#x8C03;&#x7528;&#x5B9A;&#x4E49;&#x7684;&#x5C5E;&#x6027;&#x6216;&#x8005;&#x65B9;&#x6CD5;&#x4E86;&#xFF1A;</p><pre><code class="language-javascript"><code class="javascript"><span class="hljs-comment">//test.js</span>
+<span class="hljs-keyword">var</span> math = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;math&apos;</span>);
+exports.increment = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>) </span>{
+    <span class="hljs-keyword">return</span> math.add(val, <span class="hljs-number">1</span>);
+}
+</code></code></pre><h4>1.3 &#x6A21;&#x5757;&#x6807;&#x8BC6;</h4><p>&#x6A21;&#x5757;&#x6807;&#x8BC6;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4F20;&#x9012;&#x7ED9;require()&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5B83;&#x5FC5;&#x987B;&#x662F;&#x7B26;&#x5408;&#x5C0F;&#x9A7C;&#x5CF0;&#x547D;&#x540D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6216;&#x8005;&#x4EE5;.&#x3001;..&#x5F00;&#x5934;&#x7684;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x3002;&#x5B83;&#x53EF;&#x4EE5;&#x6CA1;&#x6709;&#x6587;&#x4EF6;&#x540D;&#x540E;&#x7F00;.js&#x3002;</p></div><br>&#x7136;&#x540E;&#x662F;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF08;file system&#xFF09;&#x3001;&#x7F51;&#x7EDC;&#x548C;&#x672C;&#x5730;&#x64CD;&#x4F5C;</div><div><div><div><h3>2. fs&#x6A21;&#x5757;-&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</h3><p>Node.js &#x63D0;&#x4F9B;&#x4E00;&#x7EC4;&#x7C7B;&#x4F3C; UNIX&#xFF08;POSIX&#xFF09;&#x6807;&#x51C6;&#x7684;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;API</p><p>&#x4F7F;&#x7528;fs&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x8BFB;&#x53D6;&#x3001;&#x5199;&#x5165;&#x3001;&#x66F4;&#x540D;&#x3001;&#x5220;&#x9664;&#x3001;&#x904D;&#x5386;&#x76EE;&#x5F55;&#x3001;&#x94FE;&#x63A5;&#x7B49;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x3002;</p><p>fs&#x6A21;&#x5757;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x5747;&#x6709;&#x5F02;&#x6B65;&#x548C;&#x540C;&#x6B65;&#x7248;&#x672C;&#xFF0C;&#x4F8B;&#x5982;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x7684;&#x51FD;&#x6570;&#x6709;&#x5F02;&#x6B65;&#x7684; fs.readFile() &#x548C;&#x540C;&#x6B65;&#x7684; fs.readFileSync()&#x3002;</p><p>&#x5F02;&#x6B65;&#x7684;&#x65B9;&#x6CD5;&#x51FD;&#x6570;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4E3A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5305;&#x542B;&#x4E86;&#x9519;&#x8BEF;&#x4FE1;&#x606F;(error)&#x3002;</p><p>&#x5EFA;&#x8BAE;&#x5927;&#x5BB6;&#x4F7F;&#x7528;&#x5F02;&#x6B65;&#x65B9;&#x6CD5;&#xFF0C;&#x6BD4;&#x8D77;&#x540C;&#x6B65;&#xFF0C;&#x5F02;&#x6B65;&#x65B9;&#x6CD5;&#x6027;&#x80FD;&#x66F4;&#x9AD8;&#xFF0C;&#x901F;&#x5EA6;&#x66F4;&#x5FEB;&#xFF0C;&#x800C;&#x4E14;&#x6CA1;&#x6709;&#x963B;&#x585E;&#x3002;</p><p>&#x793A;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p><pre><code class="language-javascript"><code class="javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>)
+<span class="hljs-keyword">var</span> filepath = path.join(__dirname, <span class="hljs-string">&apos;test.txt&apos;</span>);
+<span class="hljs-built_in">console</span>.log(filepath);
+
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;fs&apos;</span>);
+
+fs.writeFile(filepath, <span class="hljs-string">&quot;electron filesystem test&quot;</span>, (err) =&gt; {
+  <span class="hljs-keyword">if</span> (!err) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;write success!&apos;</span>);
+  } 
+});
+
+<span class="hljs-comment">// read aysnc</span>
+fs.readFile(filepath, <span class="hljs-string">&apos;utf8&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) </span>{
+  <span class="hljs-keyword">if</span> (err) {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.log(err);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;read success, content=&apos;</span> + data);
+  }
+});
+
+<span class="hljs-comment">// read sync</span>
+<span class="hljs-keyword">var</span> data = fs.readFileSync(filepath);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;sync read: &quot;</span> + data.toString());
+</code></code></pre><p>fs&#x66F4;&#x8BE6;&#x7EC6;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x89C1;</p><ol><li><a href="https://link.jianshu.com?t=http%3A%2F%2Fnodejs.cn%2Fapi%2Ffs.html" rel="nofollow" data-token="290d6500f98dfbed40f5b5366694eccc">&#x5B98;&#x7F51;api</a></li><li><a href="https://link.jianshu.com?t=http%3A%2F%2Fwww.runoob.com%2Fnodejs%2Fnodejs-fs.html" rel="nofollow" data-token="cd02a46f7f5658928d8aaf8f2cbfdf82">Node.js &#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</a></li></ol><h3>3.Net&#x6A21;&#x5757;</h3><p>Node.js Net &#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x7528;&#x4E8E;&#x5E95;&#x5C42;&#x7684;&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#x7684;&#x5C0F;&#x5DE5;&#x5177;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x521B;&#x5EFA;&#x670D;&#x52A1;&#x5668;/&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x65B9;&#x5F0F;&#x5F15;&#x5165;&#x8BE5;&#x6A21;&#x5757;&#xFF1A;</p><pre><code class="language-javascript"><code class="javascript"><span class="hljs-keyword">var</span> net = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;net&quot;</span>)
+</code></code></pre><p>&#x793A;&#x4F8B;&#xFF1A;<br>&#x521B;&#x5EFA; server.js &#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p><pre><code class="language-javascript"><code class="javascript"><span class="hljs-keyword">var</span> net = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;net&apos;</span>);
+<span class="hljs-keyword">var</span> server = net.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">connection</span>) </span>{ 
+   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;client connected&apos;</span>);
+   connection.on(<span class="hljs-string">&apos;end&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;client close connect&apos;</span>);
+   });
+   connection.write(<span class="hljs-string">&apos;Hello World!\r\n&apos;</span>);
+   connection.pipe(connection);
+});
+server.listen(<span class="hljs-number">8080</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;server is listening&apos;</span>);
+});
+</code></code></pre><p>&#x6267;&#x884C;&#x4EE5;&#x4E0A;&#x670D;&#x52A1;&#x7AEF;&#x4EE3;&#x7801;&#xFF1A;</p><pre><code class="language-python"><code class="python">$ node server.js
+server <span class="hljs-keyword">is</span> listening   <span class="hljs-comment"># &#x670D;&#x52A1;&#x5DF2;&#x521B;&#x5EFA;&#x5E76;&#x76D1;&#x542C; 8080 &#x7AEF;&#x53E3;</span>
+</code></code></pre><p>&#x65B0;&#x5F00;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;&#xFF0C;&#x521B;&#x5EFA; client.js &#x6587;&#x4EF6;&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p><pre><code class="language-javascript"><code class="javascript"><span class="hljs-keyword">var</span> net = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;net&apos;</span>);
+<span class="hljs-keyword">var</span> client = net.connect({<span class="hljs-attr">port</span>: <span class="hljs-number">8080</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;connected to server&#xFF01;&apos;</span>);  
+});
+client.on(<span class="hljs-string">&apos;data&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+   <span class="hljs-built_in">console</span>.log(data.toString());
+   client.end();
+});
+client.on(<span class="hljs-string">&apos;end&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ 
+   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;disconnected with server!&apos;</span>);
+});
+</code></code></pre><p>&#x6267;&#x884C;&#x4EE5;&#x4E0A;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</p><pre><code class="language-javascript"><code class="javascript">connected to server&#xFF01;
+Hello World!
+disconnected <span class="hljs-keyword">with</span> server!
+</code></code></pre><h3>4. OS&#x6A21;&#x5757;</h3><p>Node.js OS &#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x57FA;&#x672C;&#x7684;&#x7CFB;&#x7EDF;&#x64CD;&#x4F5C;&#x51FD;&#x6570;&#x3002;</p><p>&#x5177;&#x4F53;&#x542B;&#x4E49;&#x89C1;&#xFF1A;<a href="https://link.jianshu.com?t=http%3A%2F%2Fnodejs.cn%2Fapi%2Fos.html" rel="nofollow" data-token="649d713ec5a40b1052660ebfce32ae0e">&#x5B98;&#x7F51;API</a></p><pre><code class="language-javascript"><code class="javascript"><span class="hljs-keyword">var</span> os = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;os&quot;</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;tmpdir : &apos;</span> + os.tmpdir());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;endianness : &apos;</span> + os.endianness());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;hostname : &apos;</span> + os.hostname());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;type : &apos;</span> + os.type());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;platform : &apos;</span> + os.platform());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;arch : &apos;</span> + os.arch());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;release : &apos;</span> + os.release());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;uptime : &apos;</span> + os.uptime());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;loadavg : &apos;</span> + os.loadavg());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;totalmem : &apos;</span> + os.totalmem());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;release : &apos;</span> + os.release());
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;freemem : &apos;</span> + os.freemem());
+</code></code></pre><p>Windows&#x5E73;&#x53F0;&#x7684;&#x8F93;&#x51FA;&#x793A;&#x4F8B;&#xFF1A;</p><pre><code class="language-css"><code class="css"><span class="hljs-selector-tag">D</span>:\<span class="hljs-selector-tag">workspace</span>\<span class="hljs-selector-tag">practiceNodeJs</span>\<span class="hljs-selector-tag">src</span>&gt;<span class="hljs-selector-tag">node</span> <span class="hljs-selector-tag">os</span><span class="hljs-selector-class">.js</span>
+<span class="hljs-selector-tag">tmpdir</span> : <span class="hljs-selector-tag">C</span>:\<span class="hljs-selector-tag">Users</span>\<span class="hljs-selector-tag">gavinxu</span>\<span class="hljs-selector-tag">AppData</span>\<span class="hljs-selector-tag">Local</span>\<span class="hljs-selector-tag">Temp</span>
+<span class="hljs-selector-tag">endianness</span> : <span class="hljs-selector-tag">LE</span>
+<span class="hljs-selector-tag">hostname</span> : <span class="hljs-selector-tag">gavin</span>
+<span class="hljs-selector-tag">type</span> : <span class="hljs-selector-tag">Windows_NT</span>
+<span class="hljs-selector-tag">platform</span> : <span class="hljs-selector-tag">win32</span>
+<span class="hljs-selector-tag">arch</span> : <span class="hljs-selector-tag">x64</span>
+<span class="hljs-selector-tag">release</span> : 10<span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.14393</span>
+<span class="hljs-selector-tag">uptime</span> : 52568<span class="hljs-selector-class">.6383051</span>
+<span class="hljs-selector-tag">loadavg</span> : 0,0,0
+<span class="hljs-selector-tag">totalmem</span> : 8497946624
+<span class="hljs-selector-tag">release</span> : 10<span class="hljs-selector-class">.0</span><span class="hljs-selector-class">.14393</span>
+<span class="hljs-selector-tag">freemem</span> : 4029931520</code></code></pre></div></div>&#x53C2;&#x8003;&#x539F;&#x6587;&#x94FE;&#x63A5;&#xFF1A;<a href="https://www.jianshu.com/p/2267d6eec051" rel="nofollow" data-token="5b8ec135ac6e858d84bfe6ddfe391cdc">&#x70B9;&#x51FB;&#x6253;&#x5F00;&#x94FE;&#x63A5;</a></div><br>                                    

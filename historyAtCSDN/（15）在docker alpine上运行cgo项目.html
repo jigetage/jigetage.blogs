@@ -1,0 +1,15 @@
+
+                                            <p>&#x95EE;&#x9898;&#xFF1A;</p>
+
+<p>&#x5728;docker&#x7684;alpine&#x955C;&#x50CF;&#x4E0A;&#x8FD0;&#x884C;cgo&#x9879;&#x76EE;&#x4F1A;&#x51FA;&#x73B0;&#x95EE;&#x9898;&#xFF0C;&#x63D0;&#x793A;panic: standard_init_linux.go:175: exec user process caused &quot;no such file or directory&quot;&#x95EE;&#x9898;&#x3002;</p>
+
+<p>&#x539F;&#x56E0;&#x662F;&#x5F53;cgo&#x5F00;&#x542F;&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x6309;&#x7167;&#x52A8;&#x6001;&#x5E93;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x94FE;&#x63A5;so&#x6587;&#x4EF6;&#x7684;&#xFF0C;&#x4F46;alpine&#x53EA;&#x652F;&#x6301;&#x9759;&#x6001;&#x94FE;&#x63A5;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x51FA;&#x9519;&#x3002;</p>
+
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;</p>
+
+<p>&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;<code>CGO_ENABLED=0</code>&#x6765;&#x89E3;&#x51B3;&#xFF0C;&#x6B64;&#x65F6;cgo&#x4E5F;&#x4E0D;&#x53EF;&#x7528;&#x4E86;&#x3002;&#x6B64;&#x6CD5;&#x4E0D;&#x884C;</p>
+
+<p>&#x8C03;&#x7528;<code>go build --ldflags &quot;-extldflags -static&quot;</code> &#xFF0C;&#x6765;&#x8BA9;gcc&#x4F7F;&#x7528;&#x9759;&#x6001;&#x7F16;&#x8BD1;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x3002;</p>
+
+<p>&#x6216;&#x8005;&#x91C7;&#x7528;&#x66F4;&#x5927;&#x7684;Linux&#x955C;&#x50CF;&#xFF0C;&#x6BD4;&#x5982;Ubuntu&#x4E5F;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x3002;</p>
+                                    

@@ -1,0 +1,49 @@
+
+                                            <p>&#x4E00;&#xFF0C;&#x5148;&#x4E0A;&#x7ED3;&#x8BBA;&#xFF1A;</p>
+
+<p>&#x901A;&#x8FC7;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x5B9E;&#x73B0;&#x7684;&#x963B;&#x585E;&#xFF0C;&#x672C;&#x8D28;&#x4E0A;&#x4F9D;&#x9760;&#x7684;&#x662F;&#x4E0E;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x76F8;&#x5173;&#x8054;&#x7684;&#x4E92;&#x65A5;&#x91CF;&#xFF0C;&#x6761;&#x4EF6;&#x7684;&#x68C0;&#x6D4B;&#x662F;&#x5728;&#x4E92;&#x65A5;&#x91CF;&#x7684;&#x4FDD;&#x62A4;&#x4E0B;&#x8FDB;&#x884C;&#x7684;&#x3002;&#x5F53;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x5904;&#x4E8E;&#x672A;&#x89E6;&#x53D1;&#x7684;&#x72B6;&#x6001;&#x65F6;&#xFF0C;&#x7EBF;&#x7A0B;&#x81EA;&#x52A8;&#x963B;&#x585E;&#xFF0C;&#x5E76;&#x91CA;&#x653E;&#x4E0E;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x76F8;&#x5173;&#x8054;&#x7684;&#x4E92;&#x65A5;&#x91CF;&#x3002;&#x5982;&#x679C;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x6539;&#x53D8;&#x4E86;&#x6761;&#x4EF6;&#xFF0C;&#x5B83;&#x53D1;&#x4FE1;&#x53F7;&#x7ED9;&#x5173;&#x8054;&#x7684;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#xFF0C;&#x5524;&#x9192;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x7B49;&#x5F85;&#x5B83;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x88AB;&#x5524;&#x9192;&#x7684;&#x7EBF;&#x7A0B;&#x91CD;&#x65B0;&#x83B7;&#x5F97;&#x4E92;&#x65A5;&#x9501;&#xFF0C;&#x91CD;&#x65B0;&#x8BC4;&#x4EF7;&#x6761;&#x4EF6;&#x3002;</p>
+
+<p>&#x4E8C;&#xFF0C;&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;</p>
+
+<p>1&#xFF0C;&#x521D;&#x59CB;&#x5316;</p>
+
+<pre class="has"><code>#include &lt;pthread.h&gt;
+
+int pthread_cond_init(pthread_cond_t *restrict cond, pthread_condattr_t *restrict attr);
+int pthread_cond_destroy(pthread_cond_t *cond);</code></pre>
+
+<p>2&#xFF0C;&#x9501;&#x5B9A;&#x5E76;&#x7B49;&#x5F85;&#x6761;&#x4EF6;&#x53D1;&#x751F;</p>
+
+<pre class="has"><code>#include &lt;pthread.h&gt;
+int pthread_cond_wait(pthread_cond_t *restrict cond, pthread_mutex_t *restric mutex);
+int pthread_cond_timedwait(pthread_cond_t *restrict cond, pthread_mutex_t *restrict mutex, const struct timespec *restrict timeout);</code></pre>
+
+<p>pthread_cond_wait&#x963B;&#x585E;&#x7B49;&#x5F85;&#xFF0C;pthread_cond_timedwait&#x8D85;&#x65F6;&#x7B49;&#x5F85;.</p>
+
+<p>&#x5F53;pthread_cond_wait&#x8FD4;&#x56DE;&#x65F6;&#xFF0C;&#x4E92;&#x65A5;&#x91CF;&#x88AB;&#x81EA;&#x52A8;&#x9501;&#x4F4F;&#x3002;</p>
+
+<p>pthread_cond_wait&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x6761;&#x4EF6;&#x7684;&#x503C;&#x4E00;&#x5B9A;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#xFF0C;&#x4E5F;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x7A0B;&#x5E8F;&#x51FA;&#x95EE;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#x5FC5;&#x987B;&#x91CD;&#x65B0;&#x68C0;&#x67E5;&#x6761;&#x4EF6;&#x3002;pthread_cond_wait&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x65F6;&#xFF0C;&#x76F8;&#x5E94;&#x7684;&#x4E92;&#x65A5;&#x9501;&#x5C06;&#x88AB;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x9501;&#x5B9A;&#xFF0C;&#x5373;&#x4F7F;&#x662F;&#x51FD;&#x6570;&#x51FA;&#x9519;&#x8FD4;&#x56DE;&#x3002;</p>
+
+<p>&#x963B;&#x585E;&#x5728;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x4E0A;&#x7684;&#x7EBF;&#x7A0B;&#x88AB;&#x5524;&#x9192;&#x4EE5;&#x540E;&#xFF0C;&#x76F4;&#x5230;pthread_cond_wait()&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x4E4B;&#x524D;&#x6761;&#x4EF6;&#x7684;&#x503C;&#x90FD;&#x6709;&#x53EF;&#x80FD;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;&#x6240;&#x4EE5;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x4EE5;&#x540E;&#xFF0C;&#x5728;&#x9501;&#x5B9A;&#x76F8;&#x5E94;&#x7684;&#x4E92;&#x65A5;&#x9501;&#x4E4B;&#x524D;&#xFF0C;&#x5FC5;&#x987B;&#x91CD;&#x65B0;&#x6D4B;&#x8BD5;&#x6761;&#x4EF6;&#x503C;&#x3002;&#x6700;&#x597D;&#x7684;&#x6D4B;&#x8BD5;&#x65B9;&#x6CD5;&#x662F;&#x5FAA;&#x73AF;&#x8C03;&#x7528;pthread_cond_wait&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x628A;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x7F6E;&#x4E3A;&#x5FAA;&#x73AF;&#x7684;&#x7EC8;&#x6B62;&#x6761;&#x4EF6;&#x3002;&#x5982;&#xFF1A;&#x901A;&#x8FC7;while&#x5FAA;&#x73AF;&#x4E00;&#x76F4;&#x68C0;&#x67E5;&#x6240;&#x7B49;&#x5F85;&#x7684;&#x6761;&#x4EF6;&#xFF0C;&#x5F53;&#x6761;&#x4EF6;&#x4E0D;&#x6210;&#x7ACB;&#x65F6;&#xFF0C;&#x8FDB;&#x5165;pthread_cond_wait&#x51FD;&#x6570;&#xFF0C;&#x6B64;&#x65F6;&#x7531;&#x4E8E;&#x6761;&#x4EF6;&#x5C1A;&#x672A;&#x6210;&#x7ACB;&#xFF0C;&#x6240;&#x4EE5;&#x963B;&#x585E;&#x3002;&#x4E00;&#x76F4;&#x963B;&#x585E;&#x7B49;&#x5F85;&#xFF0C;&#x76F4;&#x5230;&#x67D0;&#x4E00;&#x7EBF;&#x7A0B;&#x4FEE;&#x6539;&#x6761;&#x4EF6;&#x72B6;&#x6001;&#x4E3A;&#x6210;&#x7ACB;&#xFF0C;&#x5E76;&#x89E3;&#x9501;&#x7B49;&#x5F85;&#x65F6;&#xFF0C;pthread_cond_wait&#x8FD4;&#x56DE;&#xFF0C;&#x6B64;&#x65F6;&#x91CD;&#x65B0;&#x5224;&#x65AD;&#x7B49;&#x5F85;&#x6761;&#x4EF6;&#x662F;&#x5426;&#x6210;&#x7ACB;&#xFF0C;&#x5982;&#x679C;&#x6B64;&#x65F6;&#x7B49;&#x5F85;&#x6761;&#x4EF6;&#x4F9D;&#x65E7;&#x6210;&#x7ACB;&#xFF0C;&#x90A3;&#x4E48;&#x8DF3;&#x51FA;while&#x5FAA;&#x73AF;&#xFF0C;&#x8FDB;&#x884C;&#x4E1A;&#x52A1;&#x5904;&#x7406;&#x3002;</p>
+
+<pre class="has"><code>pthread_mutex_lock();
+while (condition_is_false)
+{
+    pthread_cond_wait(cond_variable, mutex_variable);
+}
+
+...
+&#x4E1A;&#x52A1;&#x5904;&#x7406;
+...
+
+pthread_mutex_unlock();</code></pre>
+
+<p>&#x963B;&#x585E;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x4E0A;&#x7684;&#x4E0D;&#x540C;&#x7EBF;&#x7A0B;&#x88AB;&#x91CA;&#x653E;&#x7684;&#x6B21;&#x5E8F;&#x662F;&#x4E0D;&#x4E00;&#x5B9A;&#x7684;&#x3002;</p>
+
+<p>3&#xFF0C;&#x88AB;&#x89E3;&#x9501;</p>
+
+<pre class="has"><code>#include &lt;pthread.h&gt;
+int pthread_cond_signal(pthread_cond_t *cond);
+int pthread_cond_broadcast(pthread_cond_t *cond);</code></pre>
+
+<p>&#x8FD9;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x7528;&#x4E8E;&#x901A;&#x77E5;&#x7EBF;&#x7A0B;&#x6761;&#x4EF6;&#x5DF2;&#x7ECF;&#x6EE1;&#x8DB3;&#x3002;&#x8C03;&#x7528;&#x8FD9;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5411;&#x901A;&#x8FC7;pthread_cond_wait&#x51FD;&#x6570;&#x7B49;&#x5F85;&#x6761;&#x4EF6;&#x7684;&#x7EBF;&#x7A0B;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;, &#x4E00;&#x5B9A;&#x8981;&#x5728;&#x7B49;&#x5F85;&#x6761;&#x4EF6;&#x6539;&#x53D8;&#x4E4B;&#x540E;&#xFF0C;&#x518D;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#x3002;</p>                                    

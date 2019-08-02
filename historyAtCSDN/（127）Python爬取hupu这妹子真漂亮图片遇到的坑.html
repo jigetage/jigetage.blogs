@@ -1,0 +1,33 @@
+
+                    <!-- flowchart 箭头图标 勿删 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"/>
+                    </svg>
+                                            <p>1&#xFF0C;urllib.error.HTTPError: HTTP Error 404: Not Found<br>
+&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x53CD;&#x722C;&#x866B;&#x673A;&#x5236;&#x4F1A;&#x68C0;&#x6D4B;&#x662F;&#x4E0D;&#x662F;&#x771F;&#x5B9E;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BBF;&#x95EE;&#x8BF7;&#x6C42;&#xFF0C;&#x4E00;&#x822C;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x52A0;&#x5165;user agent&#x53EF;&#x4EE5;&#x3002;&#x4F46;&#x662F;&#x864E;&#x6251;&#x6BD4;&#x8F83;&#x53E6;&#x7C7B;&#xFF0C;&#x9700;&#x8981;&#x52A0;&#x5165;&#x4E0A;&#x4E00;&#x6B21;&#x6210;&#x529F;&#x8BBF;&#x95EE;&#x65F6;&#x8FD4;&#x56DE;&#x7684;cookie&#x624D;&#x53EF;&#x4EE5;</p>
+<p>&#x77E5;&#x8BC6;&#x8865;&#x5145;&#xFF1A;<br>
+Python [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed &#x89E3;&#x51B3;&#x65B9;&#x6CD5;</p>
+<p>&#x95EE;&#x9898;&#x7684;&#x539F;&#x56E0;&#x662F;&#x201C;SSL: CERTIFICATE_VERIFY_FAILED&#x201D;&#x3002;<br>
+Python &#x5347;&#x7EA7;&#x5230; 2.7.9 &#x4E4B;&#x540E;&#x5F15;&#x5165;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7279;&#x6027;&#xFF0C;&#x5F53;&#x4F7F;&#x7528;urllib.urlopen&#x6253;&#x5F00;&#x4E00;&#x4E2A; https &#x94FE;&#x63A5;&#x65F6;&#xFF0C;&#x4F1A;&#x9A8C;&#x8BC1;&#x4E00;&#x6B21; SSL &#x8BC1;&#x4E66;&#x3002;<br>
+&#x800C;&#x5F53;&#x76EE;&#x6807;&#x7F51;&#x7AD9;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x81EA;&#x7B7E;&#x540D;&#x7684;&#x8BC1;&#x4E66;&#x65F6;&#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x4E00;&#x4E2A; urllib2.URLError: &lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:581)&gt; &#x7684;&#x9519;&#x8BEF;&#x6D88;&#x606F;&#xFF0C;</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x5305;&#x62EC;&#x4E0B;&#x5217;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<ol>
+<li>&#x4F7F;&#x7528;ssl&#x521B;&#x5EFA;&#x672A;&#x7ECF;&#x9A8C;&#x8BC1;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x5728;urlopen&#x4E2D;&#x4F20;&#x5165;&#x4E0A;&#x4E0B;&#x6587;&#x53C2;&#x6570;</li>
+</ol>
+<p>import ssl<br>
+import urllib2</p>
+<p>context = ssl._create_unverified_context()<br>
+print urllib2.urlopen(&#x201C;<a href="https://www.12306.cn/mormhweb/" rel="nofollow" data-token="c620bb66eaf7f901b750fa2de02783b8">https://www.12306.cn/mormhweb/</a>&#x201D;, context=context).read()<br>
+2. &#x5168;&#x5C40;&#x53D6;&#x6D88;&#x8BC1;&#x4E66;&#x9A8C;&#x8BC1;</p>
+<p>import ssl<br>
+import urllib2</p>
+<p>ssl._create_default_https_context = ssl._create_unverified_context</p>
+<p>print urllib2.urlopen(&#x201C;<a href="https://www.12306.cn/mormhweb/" rel="nofollow" data-token="c620bb66eaf7f901b750fa2de02783b8">https://www.12306.cn/mormhweb/</a>&#x201D;).read()<br>
+&#x6CE8;&#x610F;&#xFF1A;&#x5728;&#x5168;&#x5168;&#x5C40;&#x8BF7;&#x6C42;&#x6587;&#x4EF6;&#x5BFC;&#x5165;import ssl</p>
+<p>import ssl<br>
+ssl._create_default_https_context = ssl._create_unverified_context<br>
+&#x81F3;&#x6B64;&#xFF0C;&#x95EE;&#x9898;&#x5706;&#x6EE1;&#x89E3;&#x51B3;&#xFF01;</p>
+<p>2&#xFF0C;python3 UnicodeDecodeError: &#x2018;utf-8&#x2019; codec can&#x2019;t decode byte 0x8b in position 1: invalid start byte<br>
+&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x6D4F;&#x89C8;&#x5668;&#x8BF7;&#x6C42;&#x7684;&#x65F6;&#x5019;&#x52A0;&#x5165;&#x4E86;accept encoding&#x5B57;&#x6BB5;&#xFF0C;&#x9020;&#x6210;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x7ECF;&#x8FC7;&#x52A0;&#x5BC6;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x76F4;&#x63A5;read().encode(&#x2018;utf-8&#x2019;)&#x4F1A;&#x51FA;&#x73B0;&#x4E0A;&#x8FF0;&#x9519;&#x8BEF;</p>
+
+                                    

@@ -1,0 +1,8 @@
+
+                                            <p>1&#xFF0C;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;map&#x91C7;&#x7528;&#x7EA2;&#x9ED1;&#x6811;&#xFF0C;unordered_map&#x91C7;&#x7528;&#x54C8;&#x5E0C;&#x7B97;&#x6CD5;</p><p>2&#xFF0C;&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF1A;map&#x9002;&#x7528;&#x4E8E;&#x6570;&#x636E;&#x9700;&#x8981;&#x81EA;&#x52A8;&#x6392;&#x5E8F;&#xFF0C;unordered_map&#x9002;&#x7528;&#x4E8E;&#x6570;&#x636E;&#x9700;&#x8981;&#x968F;&#x673A;&#x8BBF;&#x95EE;</p><p>3&#xFF0C;&#x5F53;&#x5B58;&#x50A8;&#x7684;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x662F;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x578B;&#x65F6;&#xFF0C;map&#x9700;&#x8981;&#x91CD;&#x8F7D; &lt; &#xFF08;&#x5C0F;&#x4E8E;&#x53F7;&#xFF09;&#x64CD;&#x4F5C;&#x7B26;&#xFF0C;unordered_map&#x9700;&#x8981;&#x91CD;&#x8F7D;</p><p>== &#xFF08;&#x7B49;&#x53F7;&#xFF09;&#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x5E76;&#x4E14;&#x8BA1;&#x7B97;hash_value()</p><p>4&#xFF0C;hash_value&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;</p><pre><code class="language-cpp">size_t hash_value(const person&amp; p)  
+{  
+    size_t seed = 0;  
+    std::hash_combine(seed, std::hash_value(p.name));  
+    std::hash_combine(seed, std::hash_value(p.age));  
+    return seed;  
+}  </code></pre><br>                                    

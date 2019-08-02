@@ -1,0 +1,22 @@
+
+                    <!-- flowchart 箭头图标 勿删 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"/>
+                    </svg>
+                                            <p>1&#xFF0C;&#x627E;&#x5230;&#x7A97;&#x53E3;&#x53E5;&#x67C4;&#x3002;</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs lasso">HWND hWnd <span class="hljs-subst">=</span> <span class="hljs-tag">::FindWindow</span>(CDialog, _T(<span class="hljs-string">&quot;dialog&quot;</span>));<span class="hljs-comment">//&#x5F97;&#x5230;&#x7A97;&#x53E3;&#x53E5;&#x67C4;</span></code></pre>
+
+<p>2&#xFF0C;&#x5F97;&#x5230;&#x7A97;&#x53E3;&#x7684;&#x6307;&#x9488;</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs fix"><span class="hljs-attribute">CDialog *pWnd </span>=<span class="hljs-string"> (CDialog*)FromHandle(hWnd);//&#x6709;&#x4E0A;&#x8FF0;&#x6240;&#x5F97;&#x53E5;&#x67C4;&#x5F97;&#x5230;&#x7A97;&#x53E3;&#x7684;&#x6307;&#x9488;</span></code></pre>
+
+<p>3&#xFF0C;&#x8C03;&#x7528;&#x6307;&#x9488;</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs oxygene">pWnd-&gt;<span class="hljs-function"><span class="hljs-keyword">method</span><span class="hljs-params">()</span>;</span></code></pre>                                    

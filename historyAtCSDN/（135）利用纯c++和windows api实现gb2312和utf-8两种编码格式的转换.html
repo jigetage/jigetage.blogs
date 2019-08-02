@@ -1,0 +1,56 @@
+
+                                            <p>&#x4E3A;&#x4EC0;&#x4E48;&#x540C;&#x6837;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5728;&#x4E24;&#x53F0;&#x4E3B;&#x673A;&#x4E0A;&#xFF0C;&#x4F1A;&#x51FA;&#x73B0;&#x4E00;&#x4E2A;&#x663E;&#x793A;&#x6B63;&#x5E38;&#xFF0C;&#x4E00;&#x4E2A;&#x663E;&#x793A;&#x4E71;&#x7801;&#x7684;&#x60C5;&#x51B5;&#x5462;&#xFF1F;</p>
+
+<p>&#x7B54;&#x6848;&#xFF1A;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#x4E0D;&#x5339;&#x914D;&#x3002;</p>
+
+<p>&#x89E3;&#x91CA;&#xFF1A;&#x4EFB;&#x4F55;&#x5185;&#x5BB9;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x4E2D;&#x7684;&#x5B58;&#x50A8;&#x5F62;&#x5F0F;&#x90FD;&#x662F;&#x4E8C;&#x8FDB;&#x5236;&#xFF0C;&#x4E0D;&#x8BBA;&#x662F;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x8FD8;&#x662F;&#x5728;&#x786C;&#x76D8;&#x4E2D;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x540C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5728;&#x4E24;&#x53F0;&#x4E3B;&#x673A;&#x4E0A;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B58;&#x50A8;&#x662F;&#x4E00;&#x6A21;&#x4E00;&#x6837;&#x7684;&#x3002;&#x53EA;&#x662F;&#x5C06;&#x8FD9;&#x4E2A;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x5448;&#x73B0;&#x65F6;&#xFF0C;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#x3002;&#x5448;&#x73B0;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x8FC7;&#x7A0B;&#x5C31;&#x662F;&#x5BF9;&#x5B57;&#x7B26;&#x4E32;&#x8FDB;&#x884C;&#x7F16;&#x7801;&#xFF0C;&#x5E76;&#x6309;&#x7167;&#x5B57;&#x7B26;&#x96C6;&#x627E;&#x5230;&#x8BE5;&#x7F16;&#x7801;&#x5BF9;&#x5E94;&#x7684;&#x7B26;&#x53F7;&#xFF0C;&#x5E76;&#x663E;&#x793A;&#x51FA;&#x6765;&#x7684;&#x8FC7;&#x7A0B;&#x3002;&#x6240;&#x4EE5;&#x51FA;&#x73B0;&#x4E86;&#x4E0A;&#x9762;&#x4E71;&#x7801;&#x7684;&#x95EE;&#x9898;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5728;utf8&#x7F16;&#x7801;&#x548C;gb2312&#x7F16;&#x7801;&#x4E0B;&#x90FD;&#x663E;&#x793A;&#x6B63;&#x786E;&#x3001;&#x4E14;&#x76F8;&#x540C;&#x7684;&#x6C49;&#x8BED;&#x6587;&#x672C;&#xFF0C;&#x90A3;&#x4E48;&#x4ED6;&#x4EEC;&#x5BF9;&#x5E94;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x80AF;&#x5B9A;&#x4E0D;&#x4E00;&#x6837;&#x3002;&#x8FD9;&#x6837;&#x8868;&#x8FBE;&#x53EF;&#x80FD;&#x66F4;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x3002;</p>
+
+<p>&#x51FA;&#x73B0;&#x4E71;&#x7801;&#x600E;&#x4E48;&#x529E;&#xFF1F;&#x6309;&#x4E0B;&#x9762;&#x7684;&#x6B65;&#x9AA4;&#x529E;&#xFF1A;</p>
+
+<p>1&#xFF0C;&#x627E;&#x5230;&#x4F20;&#x8FC7;&#x6765;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x539F;&#x59CB;&#x7F16;&#x7801;&#x65B9;&#x5F0F;</p>
+
+<p>2&#xFF0C;&#x627E;&#x5230;&#x4F60;&#x4E3B;&#x673A;&#x663E;&#x793A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x9ED8;&#x8BA4;&#x7F16;&#x7801;&#x65B9;&#x5F0F;</p>
+
+<p>3&#xFF0C;&#x8F6C;&#x7801;</p>
+
+<p>&#xA0;</p>
+
+<p>&#x539F;&#x6587;&#x5730;&#x5740;&#xFF1A;<a href="https://www.cnblogs.com/babietongtianta/p/3143900.html" rel="nofollow" data-token="d243db9150bab88d0b7e9acfeb6c259c">&#x70B9;&#x51FB;&#x6253;&#x5F00;</a></p>
+
+<p>//UTF-8&#x5230;GB2312&#x7684;&#x8F6C;&#x6362;</p>
+
+<pre class="has"><code>std::string U2G(const char* utf8)
+{
+int len = MultiByteToWideChar(CP_UTF8, 0, utf8, -1, NULL, 0);
+wchar_t* wstr = new wchar_t[len+1];
+memset(wstr, 0, len+1);
+MultiByteToWideChar(CP_UTF8, 0, utf8, -1, wstr, len);
+len = WideCharToMultiByte(CP_ACP, 0, wstr, -1, NULL, 0, NULL, NULL);
+char* str = new char[len+1];
+memset(str, 0, len+1);
+WideCharToMultiByte(CP_ACP, 0, wstr, -1, str, len, NULL, NULL);
+if(wstr) delete[] wstr;
+std::string strGb2312 = str;
+if(str) delete[] str;
+return strGb2312;
+}</code></pre>
+
+<p>//GB2312&#x5230;UTF-8&#x7684;&#x8F6C;&#x6362;</p>
+
+<pre class="has"><code>std::string G2U(const char* gb2312)
+{
+int len = MultiByteToWideChar(CP_ACP, 0, gb2312, -1, NULL, 0);
+wchar_t* wstr = new wchar_t[len+1];
+memset(wstr, 0, len+1);
+MultiByteToWideChar(CP_ACP, 0, gb2312, -1, wstr, len);
+len = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, NULL, 0, NULL, NULL);
+char* str = new char[len+1];
+memset(str, 0, len+1);
+WideCharToMultiByte(CP_UTF8, 0, wstr, -1, str, len, NULL, NULL);
+if(wstr) delete[] wstr;
+std::string strUtf8 = str;
+if(str) delete[] str;
+return strUtf8;
+}</code></pre>
+
+<p>&#xA0;</p>                                    

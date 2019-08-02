@@ -1,0 +1,269 @@
+
+                                            <p>&#x603B;&#x7ED3;&#xFF1A;&#x9996;&#x5148;&#x9700;&#x8981;&#x83B7;&#x53D6;&#x5C5E;&#x6027;&#x540D;&#x548C;&#x5C5E;&#x6027;&#x7C7B;&#x522B;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x5C5E;&#x6027;&#x7C7B;&#x522B;&#x91C7;&#x7528;&#x5408;&#x9002;&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x65B0;&#x7684;&#x5C5E;&#x6027;&#x503C;&#xFF0C;&#x65B0;&#x7684;&#x5C5E;&#x6027;&#x503C;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x5230;&#x4ECE;obs source&#x4E2D;&#x5BFC;&#x51FA;&#x7684;obs setting&#x4E2D;&#xFF0C;&#x6700;&#x540E;&#x5C06;&#x65B0;&#x7684;obs setting&#x5E94;&#x7528;&#x5230;obs source&#x4E2D;</p>
+
+<p>&#x5177;&#x4F53;api&#x5982;&#x4E0B;&#xFF1A;</p>
+
+<p>1&#x3001;&#x83B7;&#x53D6;&#x5C5E;&#x6027;&#x540D;&#x548C;&#x5C5E;&#x6027;&#x7C7B;&#x522B;</p>
+
+<pre class="has"><code>// &#x83B7;&#x53D6;&#x5C5E;&#x6027;&#x540D;	
+const char        * propertyName = obs_property_name(property);
+// &#x83B7;&#x53D6;&#x5C5E;&#x6027;&#x7C7B;&#x522B;
+obs_property_type propertyType     = obs_property_get_type(property);</code></pre>
+
+<p>2&#x3001;&#x83B7;&#x53D6;obs settings</p>
+
+<pre class="has"><code>OBSData settings = obs_source_get_settings(source);</code></pre>
+
+<p>3&#x3001;&#x8BBE;&#x7F6E;&#x65B0;&#x7684;&#x5C5E;&#x6027;&#x503C;</p>
+
+<pre class="has"><code>switch (propertyType) {
+	case OBS_PROPERTY_INVALID: return;
+	case OBS_PROPERTY_BOOL:    BoolChanged(setting); break;
+	case OBS_PROPERTY_INT:     IntChanged(setting); break;
+	case OBS_PROPERTY_FLOAT:   FloatChanged(setting); break;
+	case OBS_PROPERTY_TEXT:    TextChanged(setting); break;
+	case OBS_PROPERTY_LIST:    ListChanged(setting); break;
+	case OBS_PROPERTY_BUTTON:  ButtonClicked(); return;
+	case OBS_PROPERTY_COLOR:
+		if (!ColorChanged(setting))
+			return;
+		break;
+	case OBS_PROPERTY_FONT:
+		if (!FontChanged(setting))
+			return;
+		break;
+	case OBS_PROPERTY_PATH:
+		if (!PathChanged(setting))
+			return;
+		break;
+	case OBS_PROPERTY_EDITABLE_LIST: break;
+	case OBS_PROPERTY_FRAME_RATE:
+		if (!FrameRateChanged(widget, setting, view-&gt;settings))
+			return;
+		break;
+}
+
+void WidgetInfo::BoolChanged(const char *setting)
+{
+	QCheckBox *checkbox = static_cast&lt;QCheckBox*&gt;(widget);
+	obs_data_set_bool(view-&gt;settings, setting,
+			checkbox-&gt;checkState() == Qt::Checked);
+}
+
+void WidgetInfo::IntChanged(const char *setting)
+{
+	QSpinBox *spin = static_cast&lt;QSpinBox*&gt;(widget);
+	obs_data_set_int(view-&gt;settings, setting, spin-&gt;value());
+}
+
+void WidgetInfo::FloatChanged(const char *setting)
+{
+	QDoubleSpinBox *spin = static_cast&lt;QDoubleSpinBox*&gt;(widget);
+	obs_data_set_double(view-&gt;settings, setting, spin-&gt;value());
+}
+
+void WidgetInfo::TextChanged(const char *setting)
+{
+	obs_text_type type  = obs_property_text_type(property);
+
+	if (type == OBS_TEXT_MULTILINE) {
+		QPlainTextEdit *edit = static_cast&lt;QPlainTextEdit*&gt;(widget);
+		obs_data_set_string(view-&gt;settings, setting,
+				QT_TO_UTF8(edit-&gt;toPlainText()));
+		return;
+	}
+
+	QLineEdit *edit = static_cast&lt;QLineEdit*&gt;(widget);
+	obs_data_set_string(view-&gt;settings, setting, QT_TO_UTF8(edit-&gt;text()));
+}
+
+bool WidgetInfo::PathChanged(const char *setting)
+{
+	const char    *desc         = obs_property_description(property);
+	obs_path_type type          = obs_property_path_type(property);
+	const char    *filter       = obs_property_path_filter(property);
+	const char    *default_path = obs_property_path_default_path(property);
+	QString       path;
+
+	if (type == OBS_PATH_DIRECTORY)
+		path = QFileDialog::getExistingDirectory(view,
+				QT_UTF8(desc), QT_UTF8(default_path),
+				QFileDialog::ShowDirsOnly |
+				QFileDialog::DontResolveSymlinks);
+	else if (type == OBS_PATH_FILE)
+		path = QFileDialog::getOpenFileName(view,
+				QT_UTF8(desc), QT_UTF8(default_path),
+				QT_UTF8(filter));
+	else if (type == OBS_PATH_FILE_SAVE)
+		path = QFileDialog::getSaveFileName(view,
+				QT_UTF8(desc), QT_UTF8(default_path),
+				QT_UTF8(filter));
+
+	if (path.isEmpty())
+		return false;
+
+	QLineEdit *edit = static_cast&lt;QLineEdit*&gt;(widget);
+	edit-&gt;setText(path);
+	obs_data_set_string(view-&gt;settings, setting, QT_TO_UTF8(path));
+	return true;
+}
+
+void WidgetInfo::ListChanged(const char *setting)
+{
+	QComboBox        *combo = static_cast&lt;QComboBox*&gt;(widget);
+	obs_combo_format format = obs_property_list_format(property);
+	obs_combo_type   type   = obs_property_list_type(property);
+	QVariant         data;
+
+	if (type == OBS_COMBO_TYPE_EDITABLE) {
+		data = combo-&gt;currentText().toUtf8();
+	} else {
+		int index = combo-&gt;currentIndex();
+		if (index != -1)
+			data = combo-&gt;itemData(index);
+		else
+			return;
+	}
+
+	switch (format) {
+	case OBS_COMBO_FORMAT_INVALID:
+		return;
+	case OBS_COMBO_FORMAT_INT:
+		obs_data_set_int(view-&gt;settings, setting,
+				data.value&lt;long long&gt;());
+		break;
+	case OBS_COMBO_FORMAT_FLOAT:
+		obs_data_set_double(view-&gt;settings, setting,
+				data.value&lt;double&gt;());
+		break;
+	case OBS_COMBO_FORMAT_STRING:
+		obs_data_set_string(view-&gt;settings, setting,
+				data.toByteArray().constData());
+		break;
+	}
+}
+
+bool WidgetInfo::ColorChanged(const char *setting)
+{
+	const char *desc = obs_property_description(property);
+	long long  val   = obs_data_get_int(view-&gt;settings, setting);
+	QColor     color = color_from_int(val);
+
+	QColorDialog::ColorDialogOptions options =
+		QColorDialog::ShowAlphaChannel;
+
+	/* The native dialog on OSX has all kinds of problems, like closing
+	 * other open QDialogs on exit, and
+	 * https://bugreports.qt-project.org/browse/QTBUG-34532
+	 */
+#ifdef __APPLE__
+	options |= QColorDialog::DontUseNativeDialog;
+#endif
+
+	color = QColorDialog::getColor(color, view, QT_UTF8(desc), options);
+	color.setAlpha(255);
+
+	if (!color.isValid())
+		return false;
+
+	QLabel *label = static_cast&lt;QLabel*&gt;(widget);
+	label-&gt;setText(color.name(QColor::HexArgb));
+	QPalette palette = QPalette(color);
+	label-&gt;setPalette(palette);
+	label-&gt;setStyleSheet(
+		QString(&quot;background-color :%1; color: %2;&quot;)
+			.arg(palette.color(QPalette::Window).name(QColor::HexArgb))
+			.arg(palette.color(QPalette::WindowText).name(QColor::HexArgb)));
+
+	obs_data_set_int(view-&gt;settings, setting, color_to_int(color));
+
+	return true;
+}
+
+bool WidgetInfo::FontChanged(const char *setting)
+{
+	obs_data_t *font_obj = obs_data_get_obj(view-&gt;settings, setting);
+	bool       success;
+	uint32_t   flags;
+	QFont      font;
+
+	QFontDialog::FontDialogOptions options;
+
+#ifdef __APPLE__
+	options = QFontDialog::DontUseNativeDialog;
+#endif
+
+	if (!font_obj) {
+		QFont initial;
+		font = QFontDialog::getFont(&amp;success, initial, view, &quot;Pick a Font&quot;, options);
+	} else {
+		MakeQFont(font_obj, font);
+		font = QFontDialog::getFont(&amp;success, font, view, &quot;Pick a Font&quot;, options);
+		obs_data_release(font_obj);
+	}
+
+	if (!success)
+		return false;
+
+	font_obj = obs_data_create();
+
+	obs_data_set_string(font_obj, &quot;face&quot;, QT_TO_UTF8(font.family()));
+	obs_data_set_string(font_obj, &quot;style&quot;, QT_TO_UTF8(font.styleName()));
+	obs_data_set_int(font_obj, &quot;size&quot;, font.pointSize());
+	flags  = font.bold() ? OBS_FONT_BOLD : 0;
+	flags |= font.italic() ? OBS_FONT_ITALIC : 0;
+	flags |= font.underline() ? OBS_FONT_UNDERLINE : 0;
+	flags |= font.strikeOut() ? OBS_FONT_STRIKEOUT : 0;
+	obs_data_set_int(font_obj, &quot;flags&quot;, flags);
+
+	QLabel *label = static_cast&lt;QLabel*&gt;(widget);
+	QFont labelFont;
+	MakeQFont(font_obj, labelFont, true);
+	label-&gt;setFont(labelFont);
+	label-&gt;setText(QString(&quot;%1 %2&quot;).arg(font.family(), font.styleName()));
+
+	obs_data_set_obj(view-&gt;settings, setting, font_obj);
+	obs_data_release(font_obj);
+	return true;
+}
+
+void WidgetInfo::EditableListChanged()
+{
+	const char *setting = obs_property_name(property);
+	QListWidget *list = reinterpret_cast&lt;QListWidget*&gt;(widget);
+	obs_data_array *array = obs_data_array_create();
+
+	for (int i = 0; i &lt; list-&gt;count(); i++) {
+		QListWidgetItem *item = list-&gt;item(i);
+		obs_data_t *arrayItem = obs_data_create();
+		obs_data_set_string(arrayItem, &quot;value&quot;,
+				QT_TO_UTF8(item-&gt;text()));
+		obs_data_set_bool(arrayItem, &quot;selected&quot;,
+			item-&gt;isSelected());
+		obs_data_set_bool(arrayItem, &quot;hidden&quot;,
+			item-&gt;isHidden());
+		obs_data_array_push_back(array, arrayItem);
+		obs_data_release(arrayItem);
+	}
+
+	obs_data_set_array(view-&gt;settings, setting, array);
+	obs_data_array_release(array);
+
+	ControlChanged();
+}
+
+void WidgetInfo::ButtonClicked()
+{
+	if (obs_property_button_clicked(property, view-&gt;obj)) {
+		QMetaObject::invokeMethod(view, &quot;RefreshProperties&quot;,
+				Qt::QueuedConnection);
+	}
+}
+
+</code></pre>
+
+<p>4&#x3001;&#x5E94;&#x7528;&#x4FEE;&#x6539;&#x540E;&#x7684;obs settings</p>
+
+<pre class="has"><code>void obs_source_update(obs_source_t *source, obs_data_t *settings)</code></pre>
+
+<p>&#xA0;</p>                                    

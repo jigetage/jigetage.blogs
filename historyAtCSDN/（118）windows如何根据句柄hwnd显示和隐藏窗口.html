@@ -1,0 +1,31 @@
+
+                                            <p>&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;&#x5982;&#x4F55;&#x83B7;&#x53D6;&#x53E5;&#x67C4;&#xFF1F;</p>
+
+<p>&#x7B54;&#x6848;&#xFF1A;&#x901A;&#x8FC7;FindWindow&#x51FD;&#x6570;&#x83B7;&#x53D6;&#xFF0C;&#x53C2;&#x6570;&#x6709;&#x4E24;&#x4E2A;&#xFF0C;&#x5206;&#x522B;&#x4E3A;&#x7A97;&#x53E3;&#x540D;&#x548C;&#x7A97;&#x53E3;&#x6240;&#x5C5E;&#x7C7B;&#x7684;&#x7C7B;&#x540D;&#xFF0C;&#x8F93;&#x5165;&#x4E00;&#x4E2A;&#x5373;&#x53EF;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x4E3A;NULL&#x3002;&#x8FD4;&#x56DE;&#x503C;&#x662F;HWND&#x7C7B;&#x578B;&#x3002;&#x9700;&#x8981;&#x7684;&#x5934;&#x6587;&#x4EF6;&#x662F;#include &lt;Windows.h&gt;&#xFF0C;&#x5E93;&#x4E3A;user32.dll&#x3002;</p>
+
+<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF0C;&#x5982;&#x4F55;&#x901A;&#x8FC7;&#x53E5;&#x67C4;&#x663E;&#x793A;&#x6216;&#x8005;&#x9690;&#x85CF;&#x7A97;&#x53E3;&#xFF1F;</p>
+
+<p>&#x7B54;&#x6848;&#xFF0C;&#x6709;2&#x79CD;&#x65B9;&#x6CD5;&#x3002;</p>
+
+<p>1&#xFF1A;</p>
+
+<pre class="has"><code>// &#x663E;&#x793A;&#x7A97;&#x53E3;
+ShowWindow(hWnd, SW_SHOW);
+// &#x9690;&#x85CF;&#x7A97;&#x53E3;
+ShowWindow(hWnd, SW_HIDE);</code></pre>
+
+<p>2&#xFF1A;</p>
+
+<pre class="has"><code>// &#x663E;&#x793A;&#x7A97;&#x53E3;
+SendMessage(hwnd, WM_SHOWWINDOW, 0, 0);
+// &#x9690;&#x85CF;&#x7A97;&#x53E3;
+SendMessage(hwnd, WM_CLOSE, 0, 0);</code></pre>
+
+<p>&#x8865;&#x5145;&#xFF1A;</p>
+
+<p>&#x5982;&#x4F55;&#x5224;&#x65AD;&#x7A97;&#x53E3;&#x662F;&#x5426;&#x53EF;&#x89C1;&#xFF1F;</p>
+
+<pre class="has"><code>// check if the window is closed. if closed return 0, else (including on minimum state) return 1
+BOOL isClosed = IsWindowVisible(hWindow);</code></pre>
+
+<p>&#xA0;</p>                                    

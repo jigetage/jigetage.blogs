@@ -1,0 +1,68 @@
+
+                                            <p>&#x539F;&#x6587;&#x5730;&#x5740;&#xFF1A;<a href="https://www.cnblogs.com/yfceshi/p/6919680.html" rel="nofollow" data-token="ce9bf9f5bad72100d0bebbfd0caeb5f7">&#x70B9;&#x51FB;&#x8BBF;&#x95EE;</a></p>
+
+<p>&#x7ECF;&#x5E38;&#x4F7F;&#x7528;&#x6A21;&#x62DF;</p>
+
+<p>&#x6709;&#x65F6;&#x5019;&#xFF0C;&#x987B;&#x8981;&#x901A;&#x8FC7;&#x6A21;&#x62DF;&#x7528;&#x6237;&#x64CD;&#x4F5C;&#xFF0C;&#x6765;&#x8FBE;&#x5230;&#x5355;&#x51FB;&#x7684;&#x6548;&#x679C;&#x3002;&#x6BD4;&#x5982;&#x5728;&#x7528;&#x6237;&#x8FDB;&#x5165;&#x9875;&#x9762;&#x540E;&#xFF0C;&#x5C31;&#x89E6;&#x53D1;click&#x4E8B;&#x4EF6;&#xFF0C;&#x800C;&#x4E0D;&#x987B;&#x8981;&#x7528;&#x6237;&#x53BB;&#x4E3B;&#x52A8;&#x5355;&#x51FB;&#x3002;</p>
+
+<p>&#x5728;JQuery&#x4E2D;&#x3002;&#x80FD;&#x591F;&#x4F7F;&#x7528;trigger()&#x65B9;&#x6CD5;&#x5B8C;&#x6BD5;&#x6A21;&#x62DF;&#x64CD;&#x4F5C;&#x3002;&#x6BD4;&#x5982;&#x80FD;&#x591F;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x7684;&#x4EE3;&#x7801;&#x6765;&#x89E6;&#x53D1;id&#x4E3A;btn&#x7684;button&#x7684;click&#x4E8B;&#x4EF6;&#x3002;</p>
+
+<table><tbody><tr><td><code>1</code></td>
+			<td><code>$(</code><code>&apos;#btn&apos;</code><code>).trigger(</code><code>&quot;click&quot;</code><code>);</code></td>
+		</tr></tbody></table><p>&#x8FD9;&#x6837;&#xFF0C;&#x5F53;&#x9875;&#x9762;&#x8F7D;&#x5165;&#x5B8C;&#x6210;&#x540E;&#x3002;&#x5C31;&#x4F1A;&#x7ACB;&#x9A6C;&#x8F93;&#x51FA;&#x60F3;&#x8981;&#x7684;&#x6548;&#x679C;&#x3002;&#x4E5F;&#x80FD;&#x591F;&#x76F4;&#x63A5;&#x7B80;&#x5199;click()&#x3002;&#x6765;&#x8FBE;&#x5230;&#x76F8;&#x540C;&#x7684;&#x6548;&#x679C;&#xFF1A;</p>
+
+<table><tbody><tr><td><code>1</code></td>
+			<td><code>$(</code><code>&apos;#btn&apos;</code><code>).click();</code></td>
+		</tr></tbody></table><p>&#x89E6;&#x53D1;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;</p>
+
+<p>trigger()&#x65B9;&#x6CD5;&#x4E0D;&#x4EC5;&#x80FD;&#x89E6;&#x53D1;&#x6D4F;&#x89C8;&#x5668;&#x652F;&#x6301;&#x7684;&#x5177;&#x6709;&#x540C;&#x6837;&#x540D;&#x79F0;&#x7684;&#x4E8B;&#x4EF6;&#x3002;&#x4E5F;&#x80FD;&#x591F;&#x89E6;&#x53D1;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x540D;&#x79F0;&#x7684;&#x4E8B;&#x4EF6;&#x3002;&#x6BD4;&#x5982;&#x4E3A;&#x5143;&#x7D20;&#x7ED1;&#x5B9A;&#x4E00;&#x4E2A;&#x201C;myClick&#x201D;&#x7684;&#x4E8B;&#x4EF6;&#x3002;JQuery&#x4EE3;&#x7801;&#x4F8B;&#x5982;&#x4EE5;&#x4E0B;&#xFF1A;</p>
+
+<table><tbody><tr><td><code>1</code></td>
+			<td><code>$(</code><code>&apos;#btn&apos;</code><code>).bind(</code><code>&quot;myClick&quot;</code><code>, </code><code>function</code><code>(){&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>2</code></td>
+			<td><code>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</code><code>$(</code><code>&apos;#test&apos;</code><code>).append(</code><code>&quot;&lt;p&gt;&#x6211;&#x7684;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;.&lt;/p&gt;&quot;</code><code>);&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>3</code></td>
+			<td><code>&#xA0;</code><code>});</code></td>
+		</tr></tbody></table><p>&#x60F3;&#x8981;&#x89E6;&#x53D1;&#x8FD9;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF0C;&#x80FD;&#x591F;&#x4F7F;&#x7528;&#x4E0B;&#x9762;&#x4EE3;&#x7801;&#x6765;&#x5B9E;&#x73B0;&#xFF1A;</p>
+
+<table><tbody><tr><td><code>1</code></td>
+			<td><code>$(</code><code>&apos;#btn&apos;</code><code>).trigger(</code><code>&quot;myClick&quot;</code><code>);</code></td>
+		</tr></tbody></table><p>&#x4F20;&#x9012;&#x6570;&#x636E;</p>
+
+<p>trigger(type[&#xFF0C;data])&#x65B9;&#x6CD5;&#x6709;&#x4E24;&#x4E2A;&#x53C3;&#x6570;&#x3002;&#x7B2C;1&#x4E2A;&#x53C3;&#x6570;&#x662F;&#x8981;&#x89E6;&#x53D1;&#x7684;&#x4E8B;&#x4EF6;&#x7C7B;&#x578B;&#xFF0C;&#x7B2C;2&#x4E2A;&#x53C3;&#x6570;&#x662F;&#x8981;&#x4F20;&#x9012;&#x7ED9;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x51FD;&#x6570;&#x7684;&#x9644;&#x52A0;&#x6570;&#x636E;&#xFF0C;&#x4EE5;&#x6570;&#x7EC4;&#x5F62;&#x5F0F;&#x4F20;&#x9012;&#x3002;</p>
+
+<p>&#x901A;&#x5E38;&#x80FD;&#x591F;&#x901A;&#x8FC7;&#x4F20;&#x9012;&#x4E00;&#x4E2A;&#x53C3;&#x6570;&#x7ED9;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x6765;&#x5DEE;&#x522B;&#x8FD9;&#x6B21;&#x4E8B;&#x4EF6;&#x662F;&#x4EE3;&#x7801;&#x89E6;&#x53D1;&#x7684;&#x8FD8;&#x662F;&#x7528;&#x6237;&#x89E6;&#x53D1;&#x7684;&#x3002;</p>
+
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4E2A;&#x4F20;&#x9012;&#x6570;&#x636E;&#x7684;&#x6837;&#x4F8B;&#x3002;</p>
+
+<p>&#xA0;</p>
+
+<table><tbody><tr><td><code>1</code></td>
+			<td><code>$(</code><code>function</code><code>(){&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>2</code></td>
+			<td><code>&#xA0;&#xA0;&#xA0;</code><code>$(</code><code>&apos;#btn&apos;</code><code>).bind(</code><code>&quot;myClick&quot;</code><code>, </code><code>function</code><code>(event, message1, message2){&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>3</code></td>
+			<td><code>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</code><code>$(</code><code>&apos;#test&apos;</code><code>).append( </code><code>&quot;&lt;p&gt;&quot;</code><code>+message1 + message2 +</code><code>&quot;&lt;/p&gt;&quot;</code><code>);&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>4</code></td>
+			<td><code>&#xA0;&#xA0;&#xA0;&#xA0;</code><code>});&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>5</code></td>
+			<td><code>&#xA0;&#xA0;&#xA0;</code><code>$(</code><code>&apos;#btn&apos;</code><code>).click(</code><code>function</code><code>(){&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>6</code></td>
+			<td><code>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</code><code>$(</code><code>this</code><code>).trigger(</code><code>&quot;myClick&quot;</code><code>,[</code><code>&quot;&#x6211;&#x7684;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&quot;</code><code>,</code><code>&quot;&#x4E8B;&#x4EF6;&quot;</code><code>]);&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>7</code></td>
+			<td><code>&#xA0;&#xA0;&#xA0;</code><code>}).trigger(</code><code>&quot;myClick&quot;</code><code>,[</code><code>&quot;&#x6211;&#x7684;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&quot;</code><code>,</code><code>&quot;&#x4E8B;&#x4EF6;&quot;</code><code>]);&#xA0;&#xA0; </code></td>
+		</tr></tbody></table><table><tbody><tr><td><code>8</code></td>
+			<td><code>})</code></td>
+		</tr></tbody></table><p>&#x8FD0;&#x884C;&#x9ED8;&#x8BA4;&#x64CD;&#x4F5C;</p>
+
+<p>trigger()&#x65B9;&#x6CD5;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x540E;&#xFF0C;&#x4F1A;&#x8FD0;&#x884C;&#x6D4F;&#x89C8;&#x5668;&#x9ED8;&#x8BA4;&#x64CD;&#x4F5C;&#x3002;&#x6BD4;&#x5982;&#xFF1A;</p>
+
+<table><tbody><tr><td><code>1</code></td>
+			<td><code>$(</code><code>&quot;input&quot;</code><code>).trigger(</code><code>&quot;focus&quot;</code><code>);</code></td>
+		</tr></tbody></table><p>&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x4E0D;&#x4EC5;&#x4F1A;&#x89E6;&#x53D1;&#x4E3A;&lt;input&gt;&#x5143;&#x7D20;&#x7ED1;&#x5B9A;&#x7684;focus&#x4E8B;&#x4EF6;&#xFF0C;&#x4E5F;&#x4F1A;&#x4F7F;&lt;input&gt;&#x5143;&#x7D20;&#x672C;&#x8EAB;&#x5F97;&#x5230;&#x7126;&#x70B9;&#xFF08;&#x8FD9;&#x662F;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x9ED8;&#x8BA4;&#x64CD;&#x4F5C;&#xFF09;&#x3002;</p>
+
+<p>&#x5047;&#x8BBE;&#x4EC5;&#x4EC5;&#x60F3;&#x89E6;&#x53D1;&#x7ED1;&#x5B9A;&#x7684;focus&#x4E8B;&#x4EF6;&#xFF0C;&#x800C;&#x4E0D;&#x60F3;&#x8FD0;&#x884C;&#x6D4F;&#x89C8;&#x5668;&#x9ED8;&#x8BA4;&#x64CD;&#x4F5C;&#xFF0C;&#x80FD;&#x591F;&#x4F7F;&#x7528;jQuery&#x4E2D;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x7C7B;&#x4F3C;&#x7684;&#x65B9;&#x6CD5;&#x2014;&#x2014;triggerHandler()&#x65B9;&#x6CD5;&#x3002;</p>
+
+<table><tbody><tr><td><code>1</code></td>
+			<td><code>$(</code><code>&quot;input&quot;</code><code>).triggerHandler(</code><code>&quot;focus&quot;</code><code>);</code></td>
+		</tr></tbody></table><p>&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x89E6;&#x53D1;&lt;input&gt;&#x5143;&#x7D20;&#x4E0A;&#x7ED1;&#x5B9A;&#x7684;&#x7279;&#x5B9A;&#x4E8B;&#x4EF6;&#xFF0C;&#x540C;&#x4E00;&#x65F6;&#x5019;&#x53D6;&#x6D88;&#x6D4F;&#x89C8;&#x5668;&#x5BF9;&#x6B64;&#x4E8B;&#x4EF6;&#x7684;&#x9ED8;&#x8BA4;&#x64CD;&#x4F5C;&#x3002;&#x5373;&#x6587;&#x672C;&#x6846;&#x4EC5;&#x4EC5;&#x89E6;&#x53D1;&#x7ED1;&#x5B9A;&#x7684;focus&#x4E8B;&#x4EF6;&#xFF0C;&#x4E0D;&#x4F1A;&#x5F97;&#x5230;&#x7126;&#x70B9;&#x3002;</p>                                    

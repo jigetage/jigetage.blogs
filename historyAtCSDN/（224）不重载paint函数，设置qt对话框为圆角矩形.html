@@ -1,0 +1,2 @@
+
+                                            <span>	</span>QBitmap bmp(this-&gt;size());<br><span>	</span>bmp.fill();<br><span>	</span>QPainter painter(&amp;bmp);<br><span>	</span>painter.setPen(Qt::NoPen);<br><span>	</span>painter.setBrush(Qt::black);<br><span>	</span>painter.setRenderHint(QPainter::Antialiasing);<br><span>	</span>painter.drawRoundedRect(bmp.rect(), 15, 15);<br><span>	</span>setMask(bmp);                                    

@@ -1,0 +1,156 @@
+
+                                            <p>&#x4E00;&#x3001;&#x5148;&#x4E0A;&#x7ED3;&#x8BBA;&#xFF1A;</p>
+
+<p>&#x9012;&#x5F52;&#x9501;&#xFF1A;&#x540C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5728;&#x4E0D;&#x89E3;&#x9501;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x591A;&#x6B21;&#x83B7;&#x53D6;&#x9501;&#x5B9A;&#x540C;&#x4E00;&#x4E2A;&#x9012;&#x5F52;&#x9501;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x6B7B;&#x9501;&#xFF1B;</p>
+
+<p>&#x975E;&#x9012;&#x5F52;&#x9501;&#xFF1A;&#x5728;&#x4E0D;&#x89E3;&#x9501;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5F53;&#x540C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x591A;&#x6B21;&#x83B7;&#x53D6;&#x540C;&#x4E00;&#x4E2A;&#x9012;&#x5F52;&#x9501;&#x65F6;&#xFF0C;&#x4F1A;&#x4EA7;&#x751F;&#x6B7B;&#x9501;&#x3002;</p>
+
+<p>&#x4E8C;&#x3001;&#x5178;&#x578B;&#x5E94;&#x7528;&#xFF1A;</p>
+
+<p>windows&#x4E0B;&#x7684;&#x4E92;&#x65A5;&#x91CF;&#x548C;&#x4E34;&#x754C;&#x533A;&#xFF08;&#x5173;&#x952E;&#x6BB5;&#xFF09;&#x662F;&#x9012;&#x5F52;&#x9501;&#xFF1B;</p>
+
+<p>linux&#x4E0B;&#x7684;&#x4E92;&#x65A5;&#x91CF;pthread_mutex_t&#x662F;&#x975E;&#x9012;&#x5F52;&#x9501;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;&#x521B;&#x5EFA;&#x4E92;&#x65A5;&#x91CF;&#x65F6;&#x8BBE;&#x7F6E;PTHREAD_MUTEX_RECURSIVE&#x5C5E;&#x6027;&#xFF0C;&#x5C06;pthread_mutex_t&#x8BBE;&#x7F6E;&#x4E3A;&#x9012;&#x5F52;&#x9501;&#x3002;</p>
+
+<p>&#x4E09;&#x3001;&#x4E3E;&#x4F8B;</p>
+
+<p>critical_section&#x9012;&#x5F52;&#x9501;</p>
+
+<pre><code class="language-html hljs">#include &lt;Windows.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+&#x200B;
+int counter = 0;
+&#x200B;
+CRITICAL_SECTION g_cs;
+&#x200B;
+void doit(void* arg)
+{
+    int i, val;
+    for (i=0; i&lt;5000; i++)
+    {
+        EnterCriticalSection(&amp;g_cs);
+        EnterCriticalSection(&amp;g_cs);
+&#x200B;
+        val = counter;
+        printf(&quot;thread %d : %d\n&quot;, int(arg), val+1);
+        counter = val + 1;
+&#x200B;
+        LeaveCriticalSection(&amp;g_cs);
+        LeaveCriticalSection(&amp;g_cs);
+    }
+}
+&#x200B;
+int main(int argc, char*argv[])
+{
+    InitializeCriticalSection(&amp;g_cs);
+&#x200B;
+    HANDLE hThread1 = CreateThread(NULL,0, (LPTHREAD_START_ROUTINE)doit, (void*)1, 0, NULL);
+    HANDLE hTrehad2 = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)doit, (void*)2, 0, NULL);
+&#x200B;
+    WaitForSingleObject(hThread1, INFINITE);
+    WaitForSingleObject(hTrehad2, INFINITE);
+&#x200B;
+    DeleteCriticalSection(&amp;g_cs);
+&#x200B;
+    
+    return 0;
+}
+&#x7ED3;&#x679C;&#xFF1A;&#x52A0;1&#x6B21;&#x9501;&#x548C;2&#x6B21;&#x9501;&#xFF0C;&#x5747;&#x53EF;&#x4EE5;&#x6B63;&#x786E;&#x7684;&#x8F93;&#x51FA;1~10000&#x3002;</code></pre>
+
+<p>pthread_mutex_t&#x975E;&#x9012;&#x5F52;&#x9501;</p>
+
+<pre><code class="language-html hljs">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;pthread.h&gt;
+&#x200B;
+int counter = 0;
+&#x200B;
+pthread_mutex_t g_mutex = PTHREAD_MUTEX_INITIALIZER;
+&#x200B;
+void* doit(void*)
+{
+ &#xA0; &#xA0; &#xA0;  int i, val;
+ &#xA0; &#xA0; &#xA0;  for (i=0; i&lt;5000; i++)
+ &#xA0; &#xA0; &#xA0;  {
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  pthread_mutex_lock(&amp;g_mutex);
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  pthread_mutex_lock(&amp;g_mutex);
+&#x200B;
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  val = counter;
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  printf(&quot;%x: %d\n&quot;, pthread_self(), val+1);
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  counter = val + 1;
+&#x200B;
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  pthread_mutex_unlock(&amp;g_mutex);
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  pthread_mutex_unlock(&amp;g_mutex); &#xA0; &#xA0; &#xA0;
+ &#xA0; &#xA0; &#xA0;  }
+}
+&#x200B;
+int main(int argc, char*argv[])
+{
+ &#xA0; &#xA0; &#xA0;  pthread_t tid1, tid2;
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  pthread_create(&amp;tid1, NULL, doit, NULL);
+ &#xA0; &#xA0; &#xA0;  pthread_create(&amp;tid2, NULL, doit, NULL);
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  pthread_join(tid1, NULL);
+ &#xA0; &#xA0; &#xA0;  pthread_join(tid2, NULL);
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  return 0;
+}
+&#x7ED3;&#x679C;&#xFF1A;&#x52A0;1&#x6B21;&#x9501;&#xFF0C;&#x53EF;&#x4EE5;&#x6B63;&#x786E;&#x7684;&#x8F93;&#x51FA;1~10000&#xFF1B;&#x52A0;2&#x6B21;&#x9501;&#xFF0C;&#x6B7B;&#x9501;&#xFF0C;&#x4E0D;&#x8F93;&#x51FA;&#x4EFB;&#x4F55;&#x4FE1;&#x606F;&#x3002;</code></pre>
+
+<p>pthread_mutex_t&#x9012;&#x5F52;&#x9501;</p>
+
+<pre><code class="language-html hljs">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;pthread.h&gt;
+&#x200B;
+int counter = 0;
+&#x200B;
+pthread_mutex_t g_mutex;// = PTHREAD_MUTEX_INITIALIZER;
+&#x200B;
+void* doit(void*)
+{
+ &#xA0; &#xA0; &#xA0;  int i, val;
+ &#xA0; &#xA0; &#xA0;  for (i=0; i&lt;5000; i++)
+ &#xA0; &#xA0; &#xA0;  {
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  pthread_mutex_lock(&amp;g_mutex);
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  pthread_mutex_lock(&amp;g_mutex);
+&#x200B;
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  val = counter;
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  printf(&quot;%x: %d\n&quot;, pthread_self(), val+1);
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  counter = val + 1;
+&#x200B;
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  pthread_mutex_unlock(&amp;g_mutex);
+ &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  pthread_mutex_unlock(&amp;g_mutex);
+ &#xA0; &#xA0; &#xA0;  }
+}
+&#x200B;
+int main(int argc, char*argv[])
+{
+ &#xA0; &#xA0; &#xA0;  //create recursive attribute
+ &#xA0; &#xA0; &#xA0;  pthread_mutexattr_t attr;
+ &#xA0; &#xA0; &#xA0;  pthread_mutexattr_init(&amp;attr);
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  //set recursive attribute
+ &#xA0; &#xA0; &#xA0;  pthread_mutexattr_settype(&amp;attr, PTHREAD_MUTEX_RECURSIVE);
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  pthread_mutex_init(&amp;g_mutex, &amp;attr);
+&#x200B;
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  pthread_t tid1, tid2;
+ &#xA0; &#xA0; &#xA0;  pthread_create(&amp;tid1, NULL, doit, NULL);
+ &#xA0; &#xA0; &#xA0;  pthread_create(&amp;tid2, NULL, doit, NULL);
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  pthread_join(tid1, NULL);
+ &#xA0; &#xA0; &#xA0;  pthread_join(tid2, NULL);
+&#x200B;
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  pthread_mutex_destroy(&amp;g_mutex);
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  //destroy recursive attribute
+ &#xA0; &#xA0; &#xA0;  pthread_mutexattr_destroy(&amp;attr);
+&#x200B;
+ &#xA0; &#xA0; &#xA0;  return 0;
+}
+&#x7ED3;&#x679C;&#xFF1A;&#x52A0;1&#x6B21;&#x9501;&#x548C;2&#x6B21;&#x9501;&#xFF0C;&#x5747;&#x53EF;&#x4EE5;&#x6B63;&#x786E;&#x7684;&#x8F93;&#x51FA;1~10000&#x3002;</code></pre>
+                                    

@@ -1,0 +1,13 @@
+
+                                            
+<p>&#x63A5;&#x89E6;MFC&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4E86;&#xFF0C;&#x53D1;&#x73B0;&#x5728;&#x8FDB;&#x884C;&#x7A97;&#x53E3;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x6700;&#x9891;&#x7E41;&#x4F7F;&#x7528;&#x7684;&#x5C31;&#x662F;&#x6307;&#x9488;&#x3001;&#x53E5;&#x67C4;&#x548C;ID&#x7684;&#x76F8;&#x4E92;&#x8F6C;&#x6362;&#x4E86;&#xFF0C;&#x603B;&#x7ED3;&#x4E86;&#x4E00;&#x5957;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>&#x5047;&#x8BBE;&#x5BF9;&#x4E8E;&#x540C;&#x4E00;&#x4E2A;&#x7A97;&#x53E3;&#x800C;&#x8A00;&#xFF0C;&#x5176;&#x6307;&#x9488;&#x662F;pWnd&#xFF0C;&#x53E5;&#x67C4;&#x662F;hWnd&#xFF0C;ID&#x662F;nID&#xFF0C;&#x90A3;&#x4E48;&#x4E09;&#x8005;&#x76F8;&#x4E92;&#x8F6C;&#x6362;&#x4E86;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><br></p>
+<p></p><pre><code class="language-html">&#x6307;&#x9488;-&gt;&#x53E5;&#x67C4;&#xFF1A;hWnd = pWnd-&gt;GetSafeHwnd();
+ID-&gt;&#x53E5;&#x67C4;&#xFF1A;hWnd = ::GetDlgItem(hParentWnd, ID);
+&#x53E5;&#x67C4;-&gt;&#x6307;&#x9488;&#xFF1A;pWnd = CWnd::FromHandle(hWnd);
+ID-&gt;&#x6307;&#x9488;&#xFF1A;pWnd = Cwnd::GetDlgItem();
+&#x6307;&#x9488;-&gt;ID&#xFF1A;ID = GetWindowLong(pWnd-&gt;GetSafeHwnd(), GWL_ID);
+&#x53E5;&#x67C4;-&gt;ID&#xFF1A;ID = GetWindowLong(hWnd, GWL_ID);</code></pre><br><br><p>&#x5176;&#x4E2D;&#xFF0C;ID-&gt;&#x53E5;&#x67C4;&#x548C;ID-&gt;&#x6307;&#x9488;&#x7684;&#x8F6C;&#x6362;&#x51FD;&#x6570;GetDlgItem&#x518D;&#x5177;&#x4F53;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;&#x9700;&#x8981;&#x67E5;&#x8BE2;MSDN&#x3002;</p>
+<p><br></p>
+                                    

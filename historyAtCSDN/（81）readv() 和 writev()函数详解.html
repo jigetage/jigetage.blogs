@@ -1,0 +1,31 @@
+
+                                            <p>&#x76F4;&#x63A5;&#x4E0A;&#x7ED3;&#x8BBA;&#xFF1A;</p>
+
+<p>readv()&#x4EE3;&#x8868;&#x5206;&#x6563;&#x8BFB;&#xFF0C; &#x5373;&#x5C06;&#x6570;&#x636E;&#x4ECE;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x8BFB;&#x5230;&#x5206;&#x6563;&#x7684;&#x5185;&#x5B58;&#x5757;&#x4E2D;&#xFF1B;</p>
+
+<p>writev()&#x4EE3;&#x8868;&#x96C6;&#x4E2D;&#x5199;&#xFF0C;&#x5373;&#x5C06;&#x591A;&#x5757;&#x5206;&#x6563;&#x7684;&#x5185;&#x5B58;&#x4E00;&#x5E76;&#x5199;&#x5165;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x4E2D;&#x3002;</p>
+
+<p>&#xA0;</p>
+
+<p>&#x4F9D;&#x8D56;&#x9879;&#xFF1A;</p>
+
+<p>&#x5934;&#x6587;&#x4EF6;&#xFF1A;include &lt;sys/uio.h&gt;</p>
+
+<p>api&#x63A5;&#x53E3;&#xFF1A;</p>
+
+<pre class="has"><code>ssize_t readv(int fd, const struct iovec *vector, int count); 
+ssize_t writev(int fd, const struct iovec *vector, int count);
+
+&#x5176;&#x4E2D;&#xFF0C;fd&#x53C2;&#x6570;&#x662F;&#x88AB;&#x64CD;&#x4F5C;&#x7684;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x3002; vector&#x53C2;&#x6570;&#x662F;iovec&#x7ED3;&#x6784;&#x4F53;&#xFF1A;
+
+struct iovec {
+    void *iov_base; /*&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x8FD9;&#x4E2A;&#x7F13;&#x51B2;&#x533A;&#x662F;&#x5B58;&#x653E;readv()&#x6240;&#x63A5;&#x6536;&#x7684;&#x6570;&#x636E;&#x6216; //writev()&#x5C06;&#x8981;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;*/
+    size_t iov_len; /*&#x63A5;&#x6536;&#x7684;&#x6700;&#x5927;&#x957F;&#x5EA6;&#x4EE5;&#x53CA;&#x5B9E;&#x9645;&#x5199;&#x5165;&#x7684;&#x957F;&#x5EA6;*/
+};
+
+count&#x53C2;&#x6570;&#x662F;vector&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x5373;&#x6709;&#x591A;&#x5C11;&#x5757;&#x5185;&#x5B58;&#x6570;&#x636E;&#x9700;&#x8981;&#x4ECE;fd&#x8BFB;&#x51FA;&#x6216;&#x5199;&#x5230;fd&#x3002;
+
+&#x4E24;&#x8005;&#x8C03;&#x7528;&#x6210;&#x529F;&#x65F6;&#x8FD4;&#x56DE;&#x8BFB;&#x51FA;/&#x5199;&#x5165;fd&#x7684;&#x5B57;&#x8282;&#x6570;&#xFF0C;&#x5931;&#x8D25;&#x8FD4;&#x56DE;-1&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E;errno&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x5F15;&#x5165;error.h&#x5934;&#x6587;&#x4EF6;&#x3002;</code></pre>
+
+<p>&#xA0;</p>
+                                    

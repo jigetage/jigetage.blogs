@@ -1,0 +1,51 @@
+
+                                            <p>go&#x4E2D;defer&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+
+<p>1&#xFF0C;&#x5728;&#x51FD;&#x6570;&#x8FD0;&#x884C;&#x7ED3;&#x675F;&#x65F6;&#xFF0C;&#x8FDB;&#x884C;&#x6E05;&#x7406;&#x64CD;&#x4F5C;&#x3002;&#x6BD4;&#x5982;&#xFF1A;</p>
+
+<p>&#x5173;&#x95ED;&#x6587;&#x4EF6;&#x6D41;</p>
+
+<pre>// open a file &#xA0;
+defer file.Close()</pre>
+
+<p>&#x89E3;&#x9501;&#x4E00;&#x4E2A;&#x52A0;&#x9501;&#x7684;&#x8D44;&#x6E90;</p>
+
+<pre>mu.Lock() &#xA0;
+defer mu.Unlock() </pre>
+
+<p>&#x6253;&#x5370;&#x6700;&#x7EC8;&#x62A5;&#x544A;</p>
+
+<pre>printHeader() &#xA0;
+defer printFooter()</pre>
+
+<p>&#x5173;&#x95ED;&#x6570;&#x636E;&#x5E93;&#x94FE;&#x63A5;</p>
+
+<pre>// open a database connection &#xA0;
+defer disconnectFromDB()</pre>
+
+<p>2&#xFF0C;&#x5BF9;&#x51FD;&#x6570;return&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;</p>
+
+<pre>package main
+&#x200B;
+import (
+    &quot;io&quot;
+    &quot;log&quot;
+)
+&#x200B;
+func func1(s string) (n int, err error) {
+    defer func() {
+        log.Printf(&quot;func1(%q) = %d, %v&quot;, s, n, err)
+    }()
+    return 7, io.EOF
+}
+&#x200B;
+func main() {
+    func1(&quot;Go&quot;)
+}</pre>
+
+<p>&#x8F93;&#x51FA;&#xFF1A;</p>
+
+<pre>Output: 2011/10/04 10:46:11 func1(&quot;Go&quot;) = 7, EOF</pre>
+
+<p>defer&#x662F;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x503C;7&#x548C;EOF&#x7684;&#x3002;</p>
+                                    

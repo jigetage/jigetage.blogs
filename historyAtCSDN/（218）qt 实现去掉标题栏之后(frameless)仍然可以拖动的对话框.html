@@ -1,0 +1,68 @@
+
+                                            <p>movable-base-dialog.h</p><pre><code class="language-cpp">#ifndef MOVABLE_BASE_DLG_H
+#define MOVABLE_BASE_DLG_H
+
+#include &lt;QDialog&gt;
+
+class QPoint;
+class QPaintEvent;
+class ZWWMovableDialog :public QDialog{
+    Q_OBJECT
+public:
+    ZWWMovableDialog(QWidget* parent);
+    ~ZWWMovableDialog(){};
+
+signals:
+       void mouseButtonMove(QPoint pos);
+       void signalMainWindowMove();
+
+protected:
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override;
+
+private:
+    bool            m_Drag = false;
+    QPoint          m_DragPosition;
+};
+#endif</code></pre><p>movable-base-dialog.cpp</p><pre><code class="language-cpp">#include &lt;QCloseEvent&gt;
+#include &lt;QPoint&gt;
+#include &lt;QPainter&gt;
+#include &lt;QDebug&gt;
+#include &lt;qmath.h&gt;
+
+#include &quot;movable-base-dialog.h&quot;
+
+ZWWMovableDialog::ZWWMovableDialog(QWidget* parent)
+:QDialog(parent)
+{
+}
+
+void ZWWMovableDialog::mousePressEvent(QMouseEvent *event)
+{
+    if (event-&gt;button() == Qt::LeftButton) {
+        m_Drag = true;
+        m_DragPosition = event-&gt;globalPos() - this-&gt;pos();
+        event-&gt;accept();
+    }
+    QDialog::mousePressEvent(event);
+}
+
+void ZWWMovableDialog::mouseMoveEvent(QMouseEvent *event)
+{
+    if (m_Drag &amp;&amp; (event-&gt;buttons() &amp;&amp; Qt::LeftButton)) {
+        move(event-&gt;globalPos() - m_DragPosition);
+        event-&gt;accept();
+        emit mouseButtonMove(event-&gt;globalPos() - m_DragPosition);
+        emit signalMainWindowMove();
+    }
+    QDialog::mouseMoveEvent(event);
+}
+
+void ZWWMovableDialog::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+    m_Drag = false;
+    QDialog::mouseReleaseEvent(event);
+}
+</code></pre><br>                                    

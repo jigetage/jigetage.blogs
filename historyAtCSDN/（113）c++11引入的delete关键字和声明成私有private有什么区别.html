@@ -1,0 +1,36 @@
+
+                                            <p>&#x7B54;&#x6848;&#xFF1A;&#x5927;&#x90E8;&#x5206;&#x6CA1;&#x6709;&#x533A;&#x522B;&#xFF0C;&#x90FD;&#x662F;&#x4E0D;&#x80FD;&#x5728;&#x5916;&#x90E8;&#x8BBF;&#x95EE;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x3002;</p>
+
+<p>&#x533A;&#x522B;&#x5728;&#x4E8E;&#xFF1A;&#x53EA;&#x5728;&#x4F7F;&#x7528;&#x6A21;&#x677F;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x53EA;&#x80FD;&#x91C7;&#x7528;delete&#x7279;&#x5316;&#xFF0C;&#x4E0D;&#x80FD;&#x91C7;&#x7528;private&#x7279;&#x5316;&#x3002;</p>
+
+<p>&#x5982;&#x4E0B;&#xFF1A;</p>
+
+<p>&#x5728;&#x6A21;&#x677F;&#x7279;&#x4F8B;&#x5316;&#x4E2D;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x7528; delete &#x6765;&#x8FC7;&#x6EE4;&#x4E00;&#x4E9B;&#x7279;&#x5B9A;&#x7684;&#x5F62;&#x53C2;&#x7C7B;&#x578B;&#x3002;</p>
+
+<p>&#x4F8B;&#x5982;&#xFF0C;Widget&#xA0;&#x7C7B;&#x4E2D;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x51FD;&#x6570;&#xFF0C;&#x5F53;&#x8FDB;&#x884C;&#x6A21;&#x677F;&#x7279;&#x5316;&#x65F6;&#xFF0C;&#x8981;&#x6C42;&#x7981;&#x6B62;&#x53C2;&#x6570;&#x4E3A; void* &#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x3002;</p>
+
+<p>&#x5982;&#x679C;&#x6309;&#x7167; C++98 &#x7684; &#x201C;&#x79C1;&#x6709;&#x4E0D;&#x5B9E;&#x73B0;&#x201C; &#x601D;&#x8DEF;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x5C06;&#x7279;&#x4F8B;&#x5316;&#x7684;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4E3A;&#x79C1;&#x6709;&#x578B;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+
+<pre class="has"><code>class Widget {
+public:
+    template&lt;typename T&gt;
+    void ProcessPointer(T* ptr) { &#x2026; }
+private:
+    template&lt;&gt;             
+    void ProcessPointer&lt;void&gt;(void*);    // error!
+};</code></pre>
+
+<p>&#x95EE;&#x9898;&#x662F;&#xFF0C;&#x6A21;&#x677F;&#x7279;&#x5316;&#x5E94;&#x8BE5;&#x88AB;&#x5199;&#x5728;&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x57DF; (namespace scope)&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7C7B;&#x57DF; (class scope)&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>
+
+<p>&#x800C;&#x5728; C++11 &#x4E2D;&#xFF0C;&#x56E0;&#x4E3A;&#x6709;&#x4E86; delete &#x5173;&#x952E;&#x5B57;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x7C7B;&#x57DF;&#x5916;&#xFF0C;&#x5C06;&#x7279;&#x4F8B;&#x5316;&#x7684;&#x6A21;&#x677F;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4E3A; delete&#xFF0C; &#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+
+<pre class="has"><code>class Widget {
+public:
+    template&lt;typename T&gt;
+    void ProcessPointer(T* ptr) { &#x2026; }
+};
+
+template&lt;&gt; 
+void Widget::ProcessPointer&lt;void&gt;(void*) = delete; // still public, but deleted</code></pre>
+
+<p>&#x8FD9;&#x6837;&#xFF0C;&#x5F53;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x6709;&#x8C03;&#x7528; void* &#x4F5C;&#x5F62;&#x53C2;&#x7684; ProcessPointer &#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x5219;&#x7F16;&#x8BD1;&#x65F6;&#x5C31;&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>                                    

@@ -1,0 +1,18 @@
+
+                                            <p>&#x65B9;&#x6CD5;&#xFF1A;&#x91CD;&#x8F7D;paintEvent&#xFF0C;&#x5728;&#x533A;&#x57DF;&#x5185;&#x91CD;&#x65B0;&#x7ED8;&#x5236;</p>
+
+<p>&#x4EE3;&#x7801;&#xFF1A;</p>
+
+<pre class="has"><code>void UIMainWindow::paintEvent(QPaintEvent* event) {
+    QPainter p(this);
+    p.setCompositionMode(QPainter::CompositionMode_Clear);
+    int x = m_wgtVideo-&gt;x();
+    int y = m_wgtVideo-&gt;y();
+    int width = m_wgtVideo-&gt;width();
+    int height = m_wgtVideo-&gt;height();
+    p.fillRect(x, y, width, height, Qt::SolidPattern);
+}</code></pre>
+
+<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF1A;m_wgtVideo&#x6240;&#x5728;&#x7684;&#x533A;&#x57DF;&#x900F;&#x660E;</p>
+
+<p>&#x95EE;&#x9898;&#xFF1A;&#x4E0A;&#x8FF0;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x5728;windows&#x4E0B;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x771F;&#x7684;&#x4F7F;&#x5F97;&#x533A;&#x57DF;&#x900F;&#x660E;&#xFF0C;&#x800C;&#x662F;&#x4F7F;&#x533A;&#x57DF;&#x88AB;&#x9ED1;&#x8272;&#x586B;&#x5145;&#x3002;</p>                                    

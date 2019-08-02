@@ -1,0 +1,15 @@
+
+                                            <p>&#x5982;&#x679C;&#x4F60;&#x662F;&#x901A;&#x8FC7;qt&#x5F00;&#x53D1;windows&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x662F;&#x5426;&#x6709;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x60F3;&#x6CD5;&#x5462;&#xFF1F;</p><p>&#x600E;&#x4E48;&#x6837;&#x624D;&#x80FD;&#x5C06;windows&#x4E0B;&#x5BF9;&#x7A97;&#x53E3;&#x7684;&#x64CD;&#x4F5C;&#x5E94;&#x7528;&#x5728;qt&#x7A97;&#x53E3;&#x4E0A;&#x5462;&#xFF1F;</p><p>&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x65B9;&#x6848;&#xFF1A;</p><p>1&#xFF0C;&#x4F17;&#x6240;&#x5468;&#x77E5;&#xFF0C;windows&#x7A97;&#x53E3;&#x6709;&#x4E00;&#x4E2A;hwnd&#xFF0C;&#x5373;&#x53E5;&#x67C4;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x53E5;&#x67C4;&#x6765;&#x6307;&#x4EE3;&#x7A97;&#x53E3;&#x3002;qt&#x5BF9;&#x8BDD;&#x6846;&#x7684;winId()&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x53E5;&#x67C4;&#x3002;</p><p>2&#xFF0C;windows api&#x4E2D;&#x7684;</p><pre><code class="language-cpp">HWND WINAPI FindWindow(
+  _In_opt_  LPCTSTR lpClassName,
+  _In_opt_  LPCTSTR lpWindowName
+);
+ </code></pre><pre><code class="language-cpp">&#x8BE5;&#x51FD;&#x6570;&#x901A;&#x8FC7;&#x521B;&#x5EFA;&#x7A97;&#x53E3;&#x65F6;&#x7684;&#x7C7B;&#x540D;&#x548C;&#x7A97;&#x53E3;&#x540D;&#x67E5;&#x627E;&#x7A97;&#x53E3;&#x5E76;&#x8FD4;&#x56DE;&#x8BE5;&#x7A97;&#x53E3;&#x7684;&#x53E5;&#x67C4;&#xFF0C;&#x51FD;&#x6570;&#x4E0D;&#x4F1A;&#x641C;&#x7D22;&#x5B50;&#x7A97;&#x53E3;&#x3002;&#x8BE5;&#x51FD;&#x6570;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x3002;
+&#x53C2;&#x6570;
+lpClassName [in, optional]
+Type: LPCTSTR
+&#x7C7B;&#x540D;&#x548C;&#x7A97;&#x53E3;&#x540D;&#x662F;&#x5728;&#x5148;&#x524D;&#x8C03;&#x7528;RegisterClass or RegisterClassEx&#x65F6;&#x521B;&#x5EFA;&#x7684;
+&#x5982;&#x679C;lpClassName&#x4E3A;NULL&#xFF0C;&#x4ED6;&#x4F1A;&#x5BFB;&#x627E;&#x6240;&#x6709;&#x548C;lpWindowName&#x53C2;&#x6570;&#x5339;&#x914D;&#x7684;&#x7A97;&#x53E3;
+lpWindowName [in, optional]
+Type: LPCTSTR
+&#x7A97;&#x53E3;&#x7684;&#x540D;&#x5B57;&#x4E5F;&#x662F;&#x7A97;&#x53E3;&#x7684;title. &#x5982;&#x679C;&#x8BE5;&#x53C2;&#x6570;&#x4E3A;NULL,&#x6240;&#x6709;&#x7A97;&#x53E3;&#x540D;&#x5B57;&#x90FD;&#x662F;&#x5339;&#x914D;&#x7684;</code></pre><p>&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7A97;&#x53E3;&#x7684;className&#x548C;windowName&#x6765;&#x67E5;&#x627E;&#x7A97;&#x53E3;</p><p>3&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x51FD;&#x6570;</p><pre><code class="language-cpp">
+void&#xA0;setWindowTitle(const QString &amp;)</code></pre><p>&#x8BBE;&#x7F6E;qt&#x7A97;&#x53E3;&#x7684;windowTitle&#x5C5E;&#x6027;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;windows api &#x4E2D;&#x7684; findwindow &#x51FD;&#x6570;&#x67E5;&#x627E;&#x5230;&#x7A97;&#x53E3;&#x7684;hwnd&#x4E86;&#x3002;&#x7136;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x5229;&#x7528;hwnd&#x5BF9;&#x91C7;&#x7528;windows&#x539F;&#x751F;&#x65B9;&#x5F0F;&#x5BF9;&#x7A97;&#x53E3;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x4E86;&#xFF0C;&#x6BD4;&#x5982;sendmessage/postmessage</p>                                    

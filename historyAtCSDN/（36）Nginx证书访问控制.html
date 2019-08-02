@@ -1,0 +1,25 @@
+
+                    <!-- flowchart 箭头图标 勿删 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"/>
+                    </svg>
+                                            <h1><a id="HTTPHTTPS_0"></a>HTTP&#x81EA;&#x52A8;&#x8DF3;&#x8F6C;&#x81F3;HTTPS</h1>
+<p>server {<br>
+listen 80;<br>
+server_name <a href="http://www.pop.com" rel="nofollow" data-token="2d93ac60cda0704b3fc9dfc81d9aa20a">www.pop.com</a>;<br>
+return 301 https://www.pop.com$request_uri;<br>
+}</p>
+<p>server {<br>
+listen 443 ssl;</p>
+<pre><code>ssl on;
+ssl_certificate /etc/nginx/server_cert/ca.crt;
+ssl_certificate_key /etc/nginx/server_cert/ca.key;
+
+ssl_client_certificate /etc/nginx/client_cert/user.crt;
+ssl_verify_client on;
+
+...
+</code></pre>
+<p>}</p>
+
+                                    

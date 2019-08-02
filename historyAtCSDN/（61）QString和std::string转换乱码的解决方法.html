@@ -1,0 +1,10 @@
+
+                                            <pre class="has"><code>std::string cstring;
+QString qstring;
+//&#x4ECE;std::string &#x5230;QString
+qstring = QString(QString::fromLocal8Bit(cstring.c_str()));
+//&#x4ECE;QString &#x5230; std::string
+cstring = std::string((const char *)qstring.toLocal8Bit().constData());</code></pre>
+
+<p>&#xA0;</p>
+                                    

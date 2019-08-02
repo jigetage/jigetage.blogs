@@ -1,0 +1,89 @@
+
+                                            <p>&#x4E00;&#x3001;&#x5B9E;&#x73B0;&#x81EA;&#x5B9A;&#x4E49;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x83DC;&#x5355;</p><p>&#x57FA;&#x672C;&#x601D;&#x8DEF;&#xFF1A;&#x81EA;&#x5B9A;&#x4E49;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x83DC;&#x5355;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8BE5;&#x83DC;&#x5355;&#x8BBE;&#x7F6E;&#x5230;&#x5BF9;&#x5E94;&#x7684;window&#x4E0A;&#x3002;</p><p>&#x5982;&#x4F55;&#x64CD;&#x4F5C;&#xFF1A;Menu&#x548C;MenuItem&#x6A21;&#x5757;&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x83DC;&#x5355;&#xFF0C;&#x548C;&#x83DC;&#x5355;&#x7684;&#x5185;&#x5BB9;&#x3002;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x4E3B;&#x8FDB;&#x7A0B;&#x4E2D;&#x8C03;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6E32;&#x67D3;&#x8FDB;&#x7A0B;&#x4E2D;&#x901A;&#x8FC7;remote&#x6A21;&#x5757;&#x8C03;&#x7528;&#x3002;</p><p>&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#xFF1A;</p><pre><code class="language-javascript">const electron = require(&apos;electron&apos;)
+const BrowserWindow = electron.BrowserWindow
+const Menu = electron.Menu
+const app = electron.app
+
+var template = [{
+  label: &apos;&#x7F16;&#x8F91;&apos;,
+  submenu: [{
+    label: &apos;&#x64A4;&#x9500;&apos;,
+    accelerator: &apos;CmdOrCtrl+Z&apos;,
+    role: &apos;undo&apos;
+  }, {
+    label: &apos;&#x91CD;&#x505A;&apos;,
+    accelerator: &apos;Shift+CmdOrCtrl+Z&apos;,
+    role: &apos;redo&apos;
+  }, {
+    type: &apos;separator&apos;
+  }, {
+    label: &apos;&#x590D;&#x5236;&apos;,
+    accelerator: &apos;CmdOrCtrl+C&apos;,
+    role: &apos;copy&apos;
+  }, {
+    label: &apos;&#x7C98;&#x8D34;&apos;,
+    accelerator: &apos;CmdOrCtrl+V&apos;,
+    role: &apos;paste&apos;
+  }]
+}, {
+  label: &apos;&#x5E2E;&#x52A9;&apos;,
+  role: &apos;help&apos;,
+  submenu: [{
+    label: &apos;&#x5B66;&#x4E60;&#x66F4;&#x591A;&apos;,
+    click: function () {
+      electron.shell.openExternal(&apos;http://electron.atom.io&apos;)
+    }
+  }]
+}];
+
+function createWindow () {
+  // Create the browser window.
+  mainWindow = new BrowserWindow({width: 800, height: 600})
+  // Set menu to window
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
+}
+
+app.on(&apos;ready&apos;, createWindow)
+
+// Quit when all windows are closed.
+app.on(&apos;window-all-closed&apos;, function () {
+  // On OS X it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== &apos;darwin&apos;) {
+    app.quit()
+  }
+})
+
+app.on(&apos;activate&apos;, function () {
+  // On OS X it&apos;s common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (mainWindow === null) {
+    createWindow()
+  }
+})</code></pre><p>&#x4E00;&#x3001;&#x5B9E;&#x73B0;&#x53F3;&#x952E;&#x83DC;&#x5355;</p><p>&#x57FA;&#x672C;&#x601D;&#x8DEF;&#xFF1A;&#x81EA;&#x5B9A;&#x4E49;&#x53F3;&#x952E;&#x83DC;&#x5355;&#x5185;&#x5BB9;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x6309;&#x4E0B;&#x9F20;&#x6807;&#x53F3;&#x952E;&#x65F6;&#xFF0C;&#x5728;&#x6E32;&#x67D3;&#x8FDB;&#x7A0B;&#x4E2D;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#xFF0C;&#x5728;&#x4E3B;&#x8FDB;&#x7A0B;&#x4E2D;&#x663E;&#x793A;&#x53F3;&#x952E;&#x83DC;&#x5355;&#x3002;</p><p>&#x5982;&#x4F55;&#x64CD;&#x4F5C;&#xFF1A;Menu&#x548C;MenuItem&#x6A21;&#x5757;&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x83DC;&#x5355;&#xFF0C;&#x548C;&#x83DC;&#x5355;&#x7684;&#x5185;&#x5BB9;&#x3002;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x4E3B;&#x8FDB;&#x7A0B;&#x4E2D;&#x8C03;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6E32;&#x67D3;&#x8FDB;&#x7A0B;&#x4E2D;&#x901A;&#x8FC7;remote&#x6A21;&#x5757;&#x8C03;&#x7528;&#x3002;</p><p>&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#xFF1A;</p><p>&#x6E32;&#x67D3;&#x8FDB;&#x7A0B;&#xFF1A;</p><pre><code class="language-javascript">			$(&apos;body&apos;).mouseup(
+				(event) =&gt; {
+					var e = event || window.event;
+					let nType = e.button;
+					if (2 === nType) {
+						showRightClickMenu();
+					}
+					e.stopPropagation();
+				}
+			);
+
+function showRightClickMenu(){
+	ipcRenderer.send(&apos;sigShowRightClickMenu&apos;);
+}</code></pre><p>&#x4E3B;&#x8FDB;&#x7A0B;&#xFF1A;</p><pre><code class="language-javascript">ipcMain.on(&apos;sigShowRightClickMenu&apos;, (event) =&gt; {
+	//! &#x751F;&#x6210;&#x83DC;&#x5355;
+	const menu = new Menu();
+	menu.append(new MenuItem({ label: &apos;Hello world&apos; }));
+	menu.append(new MenuItem({ type: &apos;separator&apos; }));
+	menu.append(new MenuItem({ label: &apos;Electron&apos;, click: () =&gt; {
+				Electron.shell.openExternal(&apos;https://www.baidu.com&apos;);
+			}
+		})
+	);
+	const win = BrowserWindow.fromWebContents(event.sender);
+	menu.popup(win);
+});</code></pre><br><br>                                    

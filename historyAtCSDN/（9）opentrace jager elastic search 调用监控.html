@@ -1,0 +1,90 @@
+
+                                            <p>&#x57FA;&#x4E8E;open tracing&#x548C;uber/jaeger&#xFF0C;&#x5C55;&#x793A;&#x6574;&#x4E2A;&#x5206;&#x5E03;&#x5F0F;&#x7CFB;&#x7EDF;&#x7684;&#x8C03;&#x7528;&#x94FE;&#xFF0C;&#x5B9E;&#x73B0;&#x5FAE;&#x670D;&#x52A1;&#x6027;&#x80FD;&#x7684;&#x5B9E;&#x65F6;&#x76D1;&#x63A7;&#x3002;</p>
+
+<p>&#xA0;</p>
+
+<p>docker &#x5B89;&#x88C5;</p>
+
+<p>jaeger-query:</p>
+
+<p>docker run -it --rm --name jaeger-query -e SPAN_STORAGE_TYPE=elasticsearch -e ES_SERVER_URLS=<a href="http://ip" rel="nofollow" data-token="e084b6fe9d36991392cf0a9d16d29998">http://ip:port</a> -e ES_USERNAME=elastic -e ES_PASSWORD=xxxxxx -p 16686:16686/tcp jaegertracing/jaeger-query</p>
+
+<p>jaeger-collector:</p>
+
+<p>docker run -it --rm --name jaeger-collector -e SPAN_STORAGE_TYPE=elasticsearch -e ES_SERVER_URLS=<a href="http://ip" rel="nofollow" data-token="e084b6fe9d36991392cf0a9d16d29998">http://ip:port</a> -e ES_USERNAME=elastic -e ES_PASSWORD=xxxxxx -p 14267:14267 -p 14268:14268 -p 9411:9411 jaegertracing/jaeger-collector</p>
+
+<p>jaeger-agent:</p>
+
+<p>docker run -it --rm --name jaeger-agent -p 5775:5775/udp -p 6831:6831/udp -p 6832:6832/udp -p 5778:5778/tcp jaegertracing/jaeger-agent --collector.host-port=collector ip:14267</p>
+
+<p>&#xA0;</p>
+
+<p>docker compose&#x7F16;&#x6392;</p>
+
+<p>docker-compose.yml:</p>
+
+<pre class="has"><code class="language-html">version: &apos;2&apos;
+&#x200B;
+services:
+&#x200B;
+  jaeger-collector:
+ &#xA0;  build:
+ &#xA0; &#xA0;  context: jaeger-collector/
+ &#xA0;  environment:
+ &#xA0; &#xA0;  SPAN_STORAGE_TYPE: elasticsearch
+ &#xA0; &#xA0;  ES_SERVER_URLS: http://elasticsearch680:9200
+ &#xA0;  ports:
+ &#xA0; &#xA0;  - &quot;14267:14267&quot;
+ &#xA0; &#xA0;  - &quot;14268:14268&quot;
+ &#xA0; &#xA0;  - &quot;9411:9411&quot;
+&#x200B;
+  jaeger-query:
+ &#xA0;  build:
+ &#xA0; &#xA0;  context: jaeger-query/
+ &#xA0;  environment:
+ &#xA0; &#xA0;  SPAN_STORAGE_TYPE: elasticsearch
+ &#xA0; &#xA0;  ES_SERVER_URLS: http://elasticsearch680:9200
+ &#xA0;  ports:
+ &#xA0; &#xA0;  - &quot;16686:16686&quot;
+&#x200B;
+networks:
+  default:
+ &#xA0;  external:
+ &#xA0; &#xA0;  name: alibaba_es_ejaeger</code></pre>
+
+<p>&#xA0;</p>
+
+<p>&#x6570;&#x636E;&#x6301;&#x4E45;&#x5316;</p>
+
+<p>&#x91C7;&#x7528;es&#x5BF9;jaeger&#x6536;&#x5230;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6301;&#x4E45;&#x5316;&#x5904;&#x7406;&#x3002;</p>
+
+<p>&#x7531;&#x4E8E;es&#x548C;jaege&#x90E8;&#x7F72;&#x5728;&#x540C;&#x4E00;&#x53F0;&#x7269;&#x7406;&#x4E3B;&#x673A;&#x4E0A;&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x4FDD;&#x8BC1;es&#x548C;jaeger&#x5904;&#x4E8E;&#x540C;&#x4E00;&#x4E2A;docker network&#x4E2D;&#xFF0C;&#x5426;&#x5219;jaeger&#x65E0;&#x6CD5;&#x8FDE;&#x63A5;es&#x3002;</p>
+
+<p>docker-compose.yml</p>
+
+<pre><code class="language-html">version: &apos;2&apos;
+&#x200B;
+services:
+&#x200B;
+  elasticsearch680:
+ &#xA0;  image: </code><code class="language-html">    alibaba<span style="color:#abb2bf;">-es:6.8.0</span></code><code class="language-html"> &#xA0;  build:
+ &#xA0; &#xA0;  context: elasticsearch/
+ &#xA0;  volumes:
+ &#xA0; &#xA0;  - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+ &#xA0; &#xA0;  - ./elasticsearch/data:/usr/share/elasticsearch/data
+ &#xA0; &#xA0;  - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+ &#xA0;  ports:
+ &#xA0; &#xA0;  - &quot;9201:9200&quot;
+ &#xA0; &#xA0;  - &quot;9301:9300&quot;
+ &#xA0;  environment:
+ &#xA0; &#xA0;  ES_JAVA_OPTS: &quot;-Xmx256m -Xms256m&quot;
+ &#xA0;  networks:
+ &#xA0; &#xA0;  - ejaeger
+&#x200B;
+networks:
+&#x200B;
+  ejaeger:
+ &#xA0;  driver: bridge</code></pre>
+
+<p>&#x53C2;&#x8003;&#x6587;&#x7AE0;<a href="https://my.oschina.net/u/2548090/blog/1821372" rel="nofollow" data-token="8dfa906b32cc3404b100636085e4abff">&#x70B9;&#x51FB;&#x6253;&#x5F00;</a></p>
+                                    

@@ -1,0 +1,172 @@
+
+                                            <p>&#x5F00;&#x6E90;&#x4E00;&#x4E0B;&#x81EA;&#x5DF1;&#x5199;&#x7684;QT&#x5BF9;&#x8BDD;&#x6846;&#x906E;&#x7F69;&#xFF0C;&#x529F;&#x80FD;&#xFF1A;</p><p>1&#xFF0C;&#x906E;&#x7F69;&#x81EA;&#x52A8;&#x89E6;&#x53D1;</p><p>2&#xFF0C;&#x906E;&#x7F69;&#x989C;&#x8272;&#x3001;&#x900F;&#x660E;&#x5EA6;&#x3001;&#x5C3A;&#x5BF8;&#x4EBA;&#x4E3A;&#x8BBE;&#x7F6E;</p><p>3&#xFF0C;&#x901A;&#x8FC7;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#xFF0C;&#x8C03;&#x7528;&#x7B80;&#x5355;&#x3001;&#x5B89;&#x5168;</p><p><br></p><p>&#x5934;&#x6587;&#x4EF6;maskwidget.h</p><pre><code class="language-html">#ifndef MASKWIDGET_H
+#define MASKWIDGET_H
+
+#include &lt;QWidget&gt;
+
+class CMaskWidget : public QWidget
+{
+public:
+	static CMaskWidget* GetInstance();
+	static void UnInstance();
+
+	//! &#x8BBE;&#x7F6E;&#x88AB;&#x906E;&#x76D6;&#x7684;&#x63A7;&#x4EF6;
+	void SetMainWidget(QWidget *pWidgetMasked);
+
+	/*
+	 * \brief: &#x8BBE;&#x7F6E;&#x89E6;&#x53D1;&#x906E;&#x76D6;&#x52A8;&#x4F5C;&#x7684;&#x63A7;&#x4EF6;&#x540D;&#x5B57;
+	 *
+	 * \param[in]: lstWidgetNames &#x63A7;&#x4EF6;&#x540D;&#x5B57;&#x6570;&#x7EC4;
+	 */
+	void SetDialogNames(const QStringList &amp;lstWidgetNames);
+
+	/*
+	 * \brief: &#x8BBE;&#x7F6E;&#x900F;&#x660E;&#x5EA6;
+	 *
+	 * \param[in]: fOpacity &#x900F;&#x660E;&#x5EA6; &#x53D6;&#x503C;&#x8303;&#x56F4;0-1 1: &#x5B8C;&#x5168;&#x900F;&#x660E;; 0: &#x5B8C;&#x5168;&#x4E0D;&#x900F;&#x660E;
+	 */
+	void SetOpacity(float fOpacity);
+
+protected:
+	virtual void paintEvent(QPaintEvent *event) override;
+	virtual void showEvent(QShowEvent* event) override;
+	virtual bool eventFilter(QObject *obj, QEvent *event) override;
+
+private:
+	explicit CMaskWidget(QWidget* wgt = nullptr);
+	~CMaskWidget();
+
+private:
+	static CMaskWidget* m_pMask;
+	QWidget* m_pDlgToBeMasked = nullptr;
+	QStringList m_lstNamesForDlgPrompt;
+};
+
+#endif // MASKWIDGET_H</code></pre><p>&#x5B9E;&#x73B0;&#x6587;&#x4EF6;maskwidget.cpp</p><pre><code class="language-cpp">#include &quot;maskwidget.h&quot;
+#include &lt;QMutex&gt;
+#include &lt;QEvent&gt;
+#include &lt;QPainter&gt;
+#include &lt;QApplication&gt;
+
+CMaskWidget* CMaskWidget::m_pMask = nullptr;
+
+CMaskWidget* CMaskWidget::GetInstance()
+{
+	static QMutex s_Mutex;
+	if (nullptr == m_pMask)
+	{
+		QMutexLocker locker(&amp;s_Mutex);
+		if (nullptr == m_pMask)
+		{
+			m_pMask = new CMaskWidget;
+			m_pMask-&gt;setAttribute(Qt::WA_DeleteOnClose);
+		}
+	}
+	return m_pMask;
+}
+
+void CMaskWidget::UnInstance()
+{
+	static QMutex s_Mutex;
+	if (nullptr != m_pMask)
+	{
+		QMutexLocker locker(&amp;s_Mutex);
+		if (nullptr != m_pMask)
+		{
+			delete m_pMask;
+			m_pMask = nullptr;
+		}
+	}
+}
+
+void CMaskWidget::SetMainWidget(QWidget *pWidgetMasked)
+{
+	if (m_pDlgToBeMasked != pWidgetMasked)
+	{
+		m_pDlgToBeMasked = pWidgetMasked;
+		setGeometry(m_pDlgToBeMasked-&gt;geometry());
+	}
+}
+
+void CMaskWidget::SetDialogNames(const QStringList &amp;lstWidgetNames)
+{
+	if (m_lstNamesForDlgPrompt != lstWidgetNames)
+	{
+		m_lstNamesForDlgPrompt = lstWidgetNames;
+	}
+}
+
+void CMaskWidget::SetOpacity(float fOpacity)
+{
+	setWindowOpacity(fOpacity);
+}
+
+void CMaskWidget::paintEvent(QPaintEvent *event)
+{
+	QPainter painter(this);
+
+	painter.setRenderHint(QPainter::Antialiasing);  // &#x53CD;&#x952F;&#x9F7F;;
+	painter.setBrush(QBrush(QColor(0, 0, 0, 125)));
+	painter.setPen(Qt::transparent);
+
+	QRect rect = this-&gt;rect();
+	rect.setWidth(rect.width());
+	rect.setHeight(rect.height());
+
+	QPainterPath painterPath;
+	painterPath.addRoundedRect(rect, 15, 15);
+	painter.drawPath(painterPath);
+
+	QWidget::paintEvent(event);
+}
+
+void CMaskWidget::showEvent(QShowEvent* event)
+{
+	if (nullptr != m_pDlgToBeMasked)
+	{
+		//! &#x83B7;&#x53D6;&#x88AB;&#x906E;&#x76D6;&#x7684;&#x7A97;&#x53E3;&#x7684;&#x5BBD;&#x9AD8;
+		QRect rectDlgMasked = m_pDlgToBeMasked-&gt;geometry();
+		int nWidth = rectDlgMasked.width();
+		int nHeight = rectDlgMasked.height();
+		setGeometry(0, 0, nWidth, nHeight);
+	}
+	QWidget::showEvent(event);
+}
+
+bool CMaskWidget::eventFilter(QObject *obj, QEvent *event)
+{
+	if (QEvent::Show == event-&gt;type()) 
+	{
+		if (m_lstNamesForDlgPrompt.contains(obj-&gt;objectName())) 
+		{
+			this-&gt;setVisible(true);
+		}
+	}
+	else if (QEvent::Hide == event-&gt;type()) 
+	{
+		if (m_lstNamesForDlgPrompt.contains(obj-&gt;objectName())) 
+		{
+			this-&gt;setVisible(false);
+		}
+	}
+	return QWidget::eventFilter(obj, event);
+}
+
+CMaskWidget::CMaskWidget(QWidget* wgt /* = nullptr */)
+{
+	setWindowFlags(windowFlags()
+		| Qt::FramelessWindowHint);
+	setAttribute(Qt::WA_TranslucentBackground);
+}
+
+CMaskWidget::~CMaskWidget()
+{
+	m_lstNamesForDlgPrompt.clear();
+}</code></pre><p>&#x8C03;&#x7528;&#x65B9;&#x6CD5;</p><pre><code class="language-cpp">		//! &#x6DFB;&#x52A0;&#x906E;&#x7F69;
+		CMaskWidget* maskWidget = CMaskWidget::GetInstance();
+		maskWidget-&gt;setParent(this);
+		maskWidget-&gt;SetMainWidget(this);
+		maskWidget-&gt;SetDialogNames(QStringList() &lt;&lt; &quot;CBonusForNewUserDlg&quot;);
+		
+		m_pDlgBonusForNewUser = new CBonusForNewUserDlg(this);
+		m_pDlgBonusForNewUser-&gt;installEventFilter(maskWidget);</code></pre><p>&#x5176;&#x4E2D;&#xFF0C;this&#x6307;&#x7684;&#x662F;&#x88AB;&#x906E;&#x76D6;&#x7684;&#x63A7;&#x4EF6;&#x5BF9;&#x8C61;&#xFF1B;m_pDlgBonusForNewUser&#x6307;&#x7684;&#x662F;&#x89E6;&#x53D1;&#x906E;&#x7F69;&#x7684;&#x63A7;&#x4EF6;&#x5BF9;&#x8C61;&#xFF0C;&#x5373;m_pDlgBonusForNewUser&#x4E00;&#x663E;&#x793A;&#xFF0C;&#x5C31;&#x8BA9;&#x906E;&#x7F69;&#x5F39;&#x51FA;&#x3002;</p><p>&#x53C2;&#x8003;&#x4E86;&#x5927;&#x795E;<span style="color:rgb(0,0,128);font-family:Consolas, Inconsolata, Courier, monospace;font-size:12px;">feiyangqingyun(QQ:517216493)</span></p><p><span style="color:rgb(0,0,128);font-family:Consolas, Inconsolata, Courier, monospace;font-size:12px;">&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#x4E2D;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x8BC4;&#x8BBA;&#x6216;&#x8005;&#x79C1;&#x4FE1;&#x95EE;&#x6211;&#x3002;</span></p>                                    

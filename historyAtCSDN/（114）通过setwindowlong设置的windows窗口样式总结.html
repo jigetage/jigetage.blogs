@@ -1,0 +1,354 @@
+
+                                            <p>&#x5BF9;&#x4E8E;windows api&#x4E2D;&#x521B;&#x5EFA;&#x7684;&#x7A97;&#x53E3;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;SetWindowLong&#x51FD;&#x6570;&#x4FEE;&#x6539;&#x5176;&#x6837;&#x5F0F;&#x3002;</p>
+
+<p>&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4E3A;&#xFF1A;</p>
+
+<pre class="has"><code>LONG SetWindowLongA(
+  HWND hWnd,
+  int  nIndex,
+  LONG dwNewLong
+);</code></pre>
+
+<p>&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;nIndex&#x8868;&#x793A;&#x6837;&#x5F0F;&#x7684;&#x7C7B;&#x522B;&#xFF0C;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E24;&#x4E2A;&#x53D6;&#x503C;&#x4E3A;<strong>GWL_EXSTYLE </strong>(&#x6269;&#x5C55;&#x6837;&#x5F0F;)&#x548C;&#xA0;<strong>GWL_STYLE</strong>(&#x6837;&#x5F0F;)&#xFF0C;&#x5206;&#x522B;&#x5305;&#x62EC;&#xFF1A;</p>
+
+<p>PS&#xFF1A;&#x6015;&#x6709;&#x7684;&#x6025;&#x6027;&#x5B50;&#x540C;&#x5B66;&#x770B;&#x4E0D;&#x5230;&#x6700;&#x4E0B;&#x9762;&#xFF0C;&#x63D0;&#x524D;&#x8BF4;&#x4E00;&#x4E0B;&#xFF0C;&#x5728;&#x4E0B;&#x9762;&#x8FD9;&#x4E48;&#x591A;&#x503C;&#x7684;&#x524D;&#x9762;&#x52A0;&#x4E0A;&#x53D6;&#x53CD;&#x64CD;&#x4F5C;&#x7B26;&quot;~&quot;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x76F8;&#x53CD;&#x6548;&#x679C;&#x3002;&#x6BD4;&#x5982;&#xFF0C;WS_CAPTION&#x4EE3;&#x8868;&#x7A97;&#x53E3;&#x6709;&#x6807;&#x9898;&#x680F;&#xFF0C;~WS_CAPTION&#x4EE3;&#x8868;&#x7A97;&#x53E3;&#x6CA1;&#x6709;&#x6807;&#x9898;&#x680F;&#x3002;&#x5BF9;&#x4E8E;&#x5E94;&#x7528;&#x591A;&#x4E2A;&#x6548;&#x679C;&#xFF0C;&#x4F7F;&#x7528;&#x6216;&#x64CD;&#x4F5C;&#x7B26;&quot;|&quot;&#x8FDE;&#x63A5;2&#x4E2A;&#x503C;&#x5373;&#x53EF;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;SetWindowLong(hWindow, GWL_STYLE, GetWindowLong(hWindow, GWL_STYLE) |&#xA0;~WS_CAPTION);</p>
+
+<p><strong>GWL_EXSTYLE </strong>(&#x6269;&#x5C55;&#x6837;&#x5F0F;)&#xFF1A;</p>
+
+<table><tbody><tr><td>
+			<p><strong>WS_EX_ACCEPTFILES</strong></p>
+
+			<p>0x00000010L</p>
+			</td>
+			<td>The window accepts drag-drop files.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_APPWINDOW</strong></p>
+
+			<p>0x00040000L</p>
+			</td>
+			<td>Forces a top-level window onto the taskbar when the window is visible.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_CLIENTEDGE</strong></p>
+
+			<p>0x00000200L</p>
+			</td>
+			<td>The window has a border with a sunken edge.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_COMPOSITED</strong></p>
+
+			<p>0x02000000L</p>
+			</td>
+			<td>Paints all descendants of a window in bottom-to-top painting order using double-buffering. For more information, see Remarks. This cannot be used if the window has a&#xA0;<a href="https://docs.microsoft.com/zh-cn/windows/desktop/winmsg/about-window-classes" rel="nofollow" data-token="fe81e70da86152a11c7a660189b143dd">class style</a>&#xA0;of either&#xA0;<strong>CS_OWNDC</strong>&#xA0;or&#xA0;<strong>CS_CLASSDC</strong>.&#xA0;<br><strong>Windows 2000:</strong>&#xA0;This style is not supported.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_CONTEXTHELP</strong></p>
+
+			<p>0x00000400L</p>
+			</td>
+			<td>The title bar of the window includes a question mark. When the user clicks the question mark, the cursor changes to a question mark with a pointer. If the user then clicks a child window, the child receives a&#xA0;<a href="https://msdn.microsoft.com/en-us/library/Bb774305(v=VS.85).aspx" rel="nofollow"><strong>WM_HELP</strong></a>&#xA0;message. The child window should pass the message to the parent window procedure, which should call the&#xA0;<a href="https://msdn.microsoft.com/library/windows/desktop/bb762267" rel="nofollow"><strong>WinHelp</strong></a>&#xA0;function using the&#xA0;<strong>HELP_WM_HELP</strong>&#xA0;command. The Help application displays a pop-up window that typically contains help for the child window.<br><strong>WS_EX_CONTEXTHELP</strong>&#xA0;cannot be used with the&#xA0;<strong>WS_MAXIMIZEBOX</strong>&#xA0;or&#xA0;<strong>WS_MINIMIZEBOX</strong>&#xA0;styles.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_CONTROLPARENT</strong></p>
+
+			<p>0x00010000L</p>
+			</td>
+			<td>The window itself contains child windows that should take part in dialog box navigation. If this style is specified, the dialog manager recurses into children of this window when performing navigation operations such as handling the TAB key, an arrow key, or a keyboard mnemonic.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_DLGMODALFRAME</strong></p>
+
+			<p>0x00000001L</p>
+			</td>
+			<td>The window has a double border; the window can, optionally, be created with a title bar by specifying the&#xA0;<strong>WS_CAPTION</strong>&#xA0;style in the&#xA0;<em>dwStyle</em>&#xA0;parameter.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_LAYERED</strong></p>
+
+			<p>0x00080000</p>
+			</td>
+			<td>The window is a&#xA0;<a href="https://docs.microsoft.com/zh-cn/windows/desktop/winmsg/window-features" rel="nofollow" data-token="9dd796b914171324ca7915ff06f3972c">layered window</a>. This style cannot be used if the window has a&#xA0;<a href="https://docs.microsoft.com/zh-cn/windows/desktop/winmsg/about-window-classes" rel="nofollow" data-token="fe81e70da86152a11c7a660189b143dd">class style</a>&#xA0;of either&#xA0;<strong>CS_OWNDC</strong>&#xA0;or&#xA0;<strong>CS_CLASSDC</strong>.<br><strong>Windows 8:</strong>&#xA0;The&#xA0;<strong>WS_EX_LAYERED</strong>&#xA0;style is supported for top-level windows and child windows. Previous Windows versions support&#xA0;<strong>WS_EX_LAYERED</strong>&#xA0;only for top-level windows.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_LAYOUTRTL</strong></p>
+
+			<p>0x00400000L</p>
+			</td>
+			<td>If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the horizontal origin of the window is on the right edge. Increasing horizontal values advance to the left.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_LEFT</strong></p>
+
+			<p>0x00000000L</p>
+			</td>
+			<td>The window has generic left-aligned properties. This is the default.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_LEFTSCROLLBAR</strong></p>
+
+			<p>0x00004000L</p>
+			</td>
+			<td>If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the vertical scroll bar (if present) is to the left of the client area. For other languages, the style is ignored.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_LTRREADING</strong></p>
+
+			<p>0x00000000L</p>
+			</td>
+			<td>The window text is displayed using left-to-right reading-order properties. This is the default.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_MDICHILD</strong></p>
+
+			<p>0x00000040L</p>
+			</td>
+			<td>The window is a MDI child window.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_NOACTIVATE</strong></p>
+
+			<p>0x08000000L</p>
+			</td>
+			<td>A top-level window created with this style does not become the foreground window when the user clicks it. The system does not bring this window to the foreground when the user minimizes or closes the foreground window.<br>
+			The window should not be activated through programmatic access or via keyboard navigation by accessible technology, such as Narrator.<br>
+			To activate the window, use the&#xA0;<a href="https://msdn.microsoft.com/library/windows/desktop/ms646311" rel="nofollow"><strong>SetActiveWindow</strong></a>&#xA0;or&#xA0;<a href="https://msdn.microsoft.com/en-us/library/ms633539(v=VS.85).aspx" rel="nofollow"><strong>SetForegroundWindow</strong></a>function.<br>
+			The window does not appear on the taskbar by default. To force the window to appear on the taskbar, use the&#xA0;<strong>WS_EX_APPWINDOW</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_NOINHERITLAYOUT</strong></p>
+
+			<p>0x00100000L</p>
+			</td>
+			<td>The window does not pass its window layout to its child windows.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_NOPARENTNOTIFY</strong></p>
+
+			<p>0x00000004L</p>
+			</td>
+			<td>The child window created with this style does not send the&#xA0;<a href="https://msdn.microsoft.com/library/windows/desktop/hh454920" rel="nofollow"><strong>WM_PARENTNOTIFY</strong></a>message to its parent window when it is created or destroyed.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_NOREDIRECTIONBITMAP</strong></p>
+
+			<p>0x00200000L</p>
+			</td>
+			<td>The window does not render to a redirection surface. This is for windows that do not have visible content or that use mechanisms other than surfaces to provide their visual.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_OVERLAPPEDWINDOW</strong></p>
+
+			<p>(WS_EX_WINDOWEDGE | WS_EX_CLIENTEDGE)</p>
+			</td>
+			<td>The window is an overlapped window.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_PALETTEWINDOW</strong></p>
+
+			<p>(WS_EX_WINDOWEDGE | WS_EX_TOOLWINDOW | WS_EX_TOPMOST)</p>
+			</td>
+			<td>The window is palette window, which is a modeless dialog box that presents an array of commands.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_RIGHT</strong></p>
+
+			<p>0x00001000L</p>
+			</td>
+			<td>The window has generic &quot;right-aligned&quot; properties. This depends on the window class. This style has an effect only if the shell language is Hebrew, Arabic, or another language that supports reading-order alignment; otherwise, the style is ignored.<br>
+			Using the&#xA0;<strong>WS_EX_RIGHT</strong>&#xA0;style for static or edit controls has the same effect as using the&#xA0;<strong>SS_RIGHT</strong>&#xA0;or&#xA0;<strong>ES_RIGHT</strong>&#xA0;style, respectively. Using this style with button controls has the same effect as using&#xA0;<strong>BS_RIGHT</strong>&#xA0;and&#xA0;<strong>BS_RIGHTBUTTON</strong>&#xA0;styles.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_RIGHTSCROLLBAR</strong></p>
+
+			<p>0x00000000L</p>
+			</td>
+			<td>The vertical scroll bar (if present) is to the right of the client area. This is the default.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_RTLREADING</strong></p>
+
+			<p>0x00002000L</p>
+			</td>
+			<td>If the shell language is Hebrew, Arabic, or another language that supports reading-order alignment, the window text is displayed using right-to-left reading-order properties. For other languages, the style is ignored.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_STATICEDGE</strong></p>
+
+			<p>0x00020000L</p>
+			</td>
+			<td>The window has a three-dimensional border style intended to be used for items that do not accept user input.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_TOOLWINDOW</strong></p>
+
+			<p>0x00000080L</p>
+			</td>
+			<td>The window is intended to be used as a floating toolbar. A tool window has a title bar that is shorter than a normal title bar, and the window title is drawn using a smaller font. A tool window does not appear in the taskbar or in the dialog that appears when the user presses ALT+TAB. If a tool window has a system menu, its icon is not displayed on the title bar. However, you can display the system menu by right-clicking or by typing ALT+SPACE.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_TOPMOST</strong></p>
+
+			<p>0x00000008L</p>
+			</td>
+			<td>The window should be placed above all non-topmost windows and should stay above them, even when the window is deactivated. To add or remove this style, use the&#xA0;<a href="https://msdn.microsoft.com/en-us/library/ms633545(v=VS.85).aspx" rel="nofollow"><strong>SetWindowPos</strong></a>&#xA0;function.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_TRANSPARENT</strong></p>
+
+			<p>0x00000020L</p>
+			</td>
+			<td>The window should not be painted until siblings beneath the window (that were created by the same thread) have been painted. The window appears transparent because the bits of underlying sibling windows have already been painted.<br>
+			To achieve transparency without these restrictions, use the&#xA0;<a href="https://msdn.microsoft.com/library/windows/desktop/dd145102" rel="nofollow"><strong>SetWindowRgn</strong></a>&#xA0;function.</td>
+		</tr><tr><td>
+			<p><strong>WS_EX_WINDOWEDGE</strong></p>
+
+			<p>0x00000100L</p>
+			</td>
+			<td>The window has a border with a raised edge.</td>
+		</tr></tbody></table><p>&#xA0;</p>
+
+<p>&#xA0;<strong>GWL_STYLE</strong>(&#x6837;&#x5F0F;)&#xFF1A;</p>
+
+<table><tbody><tr><td>
+			<p><strong>WS_BORDER</strong></p>
+
+			<p>0x00800000L</p>
+			</td>
+			<td>The window has a thin-line border.</td>
+		</tr><tr><td>
+			<p><strong>WS_CAPTION</strong></p>
+
+			<p>0x00C00000L</p>
+			</td>
+			<td>The window has a title bar (includes the&#xA0;<strong>WS_BORDER</strong>&#xA0;style).</td>
+		</tr><tr><td>
+			<p><strong>WS_CHILD</strong></p>
+
+			<p>0x40000000L</p>
+			</td>
+			<td>The window is a child window. A window with this style cannot have a menu bar. This style cannot be used with the&#xA0;<strong>WS_POPUP</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_CHILDWINDOW</strong></p>
+
+			<p>0x40000000L</p>
+			</td>
+			<td>Same as the&#xA0;<strong>WS_CHILD</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_CLIPCHILDREN</strong></p>
+
+			<p>0x02000000L</p>
+			</td>
+			<td>Excludes the area occupied by child windows when drawing occurs within the parent window. This style is used when creating the parent window.</td>
+		</tr><tr><td>
+			<p><strong>WS_CLIPSIBLINGS</strong></p>
+
+			<p>0x04000000L</p>
+			</td>
+			<td>Clips child windows relative to each other; that is, when a particular child window receives a&#xA0;<a href="https://msdn.microsoft.com/en-us/library/Dd145213(v=VS.85).aspx" rel="nofollow"><strong>WM_PAINT</strong></a>&#xA0;message, the&#xA0;<strong>WS_CLIPSIBLINGS</strong>&#xA0;style clips all other overlapping child windows out of the region of the child window to be updated. If&#xA0;<strong>WS_CLIPSIBLINGS</strong>&#xA0;is not specified and child windows overlap, it is possible, when drawing within the client area of a child window, to draw within the client area of a neighboring child window.</td>
+		</tr><tr><td>
+			<p><strong>WS_DISABLED</strong></p>
+
+			<p>0x08000000L</p>
+			</td>
+			<td>The window is initially disabled. A disabled window cannot receive input from the user. To change this after a window has been created, use the&#xA0;<a href="https://msdn.microsoft.com/en-us/library/ms646291(v=VS.85).aspx" rel="nofollow"><strong>EnableWindow</strong></a>&#xA0;function.</td>
+		</tr><tr><td>
+			<p><strong>WS_DLGFRAME</strong></p>
+
+			<p>0x00400000L</p>
+			</td>
+			<td>The window has a border of a style typically used with dialog boxes. A window with this style cannot have a title bar.</td>
+		</tr><tr><td>
+			<p><strong>WS_GROUP</strong></p>
+
+			<p>0x00020000L</p>
+			</td>
+			<td>The window is the first control of a group of controls. The group consists of this first control and all controls defined after it, up to the next control with the&#xA0;<strong>WS_GROUP</strong>&#xA0;style. The first control in each group usually has the&#xA0;<strong>WS_TABSTOP</strong>&#xA0;style so that the user can move from group to group. The user can subsequently change the keyboard focus from one control in the group to the next control in the group by using the direction keys.<br>
+			You can turn this style on and off to change dialog box navigation. To change this style after a window has been created, use the&#xA0;<a href="https://msdn.microsoft.com/en-us/library/ms633591(v=VS.85).aspx" rel="nofollow"><strong>SetWindowLong</strong></a>&#xA0;function.</td>
+		</tr><tr><td>
+			<p><strong>WS_HSCROLL</strong></p>
+
+			<p>0x00100000L</p>
+			</td>
+			<td>The window has a horizontal scroll bar.</td>
+		</tr><tr><td>
+			<p><strong>WS_ICONIC</strong></p>
+
+			<p>0x20000000L</p>
+			</td>
+			<td>The window is initially minimized. Same as the&#xA0;<strong>WS_MINIMIZE</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_MAXIMIZE</strong></p>
+
+			<p>0x01000000L</p>
+			</td>
+			<td>The window is initially maximized.</td>
+		</tr><tr><td>
+			<p><strong>WS_MAXIMIZEBOX</strong></p>
+
+			<p>0x00010000L</p>
+			</td>
+			<td>The window has a maximize button. Cannot be combined with the&#xA0;<strong>WS_EX_CONTEXTHELP</strong>style. The&#xA0;<strong>WS_SYSMENU</strong>&#xA0;style must also be specified.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_MINIMIZE</strong></p>
+
+			<p>0x20000000L</p>
+			</td>
+			<td>The window is initially minimized. Same as the&#xA0;<strong>WS_ICONIC</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_MINIMIZEBOX</strong></p>
+
+			<p>0x00020000L</p>
+			</td>
+			<td>The window has a minimize button. Cannot be combined with the&#xA0;<strong>WS_EX_CONTEXTHELP</strong>style. The&#xA0;<strong>WS_SYSMENU</strong>&#xA0;style must also be specified.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_OVERLAPPED</strong></p>
+
+			<p>0x00000000L</p>
+			</td>
+			<td>The window is an overlapped window. An overlapped window has a title bar and a border. Same as the&#xA0;<strong>WS_TILED</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_OVERLAPPEDWINDOW</strong></p>
+
+			<p>(WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX)</p>
+			</td>
+			<td>The window is an overlapped window. Same as the&#xA0;<strong>WS_TILEDWINDOW</strong>&#xA0;style.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_POPUP</strong></p>
+
+			<p>0x80000000L</p>
+			</td>
+			<td>The windows is a pop-up window. This style cannot be used with the&#xA0;<strong>WS_CHILD</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_POPUPWINDOW</strong></p>
+
+			<p>(WS_POPUP | WS_BORDER | WS_SYSMENU)</p>
+			</td>
+			<td>The window is a pop-up window. The&#xA0;<strong>WS_CAPTION</strong>&#xA0;and&#xA0;<strong>WS_POPUPWINDOW</strong>&#xA0;styles must be combined to make the window menu visible.</td>
+		</tr><tr><td>
+			<p><strong>WS_SIZEBOX</strong></p>
+
+			<p>0x00040000L</p>
+			</td>
+			<td>The window has a sizing border. Same as the&#xA0;<strong>WS_THICKFRAME</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_SYSMENU</strong></p>
+
+			<p>0x00080000L</p>
+			</td>
+			<td>The window has a window menu on its title bar. The&#xA0;<strong>WS_CAPTION</strong>&#xA0;style must also be specified.</td>
+		</tr><tr><td>
+			<p><strong>WS_TABSTOP</strong></p>
+
+			<p>0x00010000L</p>
+			</td>
+			<td>The window is a control that can receive the keyboard focus when the user presses the TAB key. Pressing the TAB key changes the keyboard focus to the next control with the&#xA0;<strong>WS_TABSTOP</strong>&#xA0;style.<br>
+			You can turn this style on and off to change dialog box navigation. To change this style after a window has been created, use the&#xA0;<a href="https://msdn.microsoft.com/en-us/library/ms633591(v=VS.85).aspx" rel="nofollow"><strong>SetWindowLong</strong></a>&#xA0;function. For user-created windows and modeless dialogs to work with tab stops, alter the message loop to call the&#xA0;<a href="https://msdn.microsoft.com/en-us/library/ms645498(v=VS.85).aspx" rel="nofollow"><strong>IsDialogMessage</strong></a>&#xA0;function.</td>
+		</tr><tr><td>
+			<p><strong>WS_THICKFRAME</strong></p>
+
+			<p>0x00040000L</p>
+			</td>
+			<td>The window has a sizing border. Same as the&#xA0;<strong>WS_SIZEBOX</strong>&#xA0;style.</td>
+		</tr><tr><td>
+			<p><strong>WS_TILED</strong></p>
+
+			<p>0x00000000L</p>
+			</td>
+			<td>The window is an overlapped window. An overlapped window has a title bar and a border. Same as the&#xA0;<strong>WS_OVERLAPPED</strong>&#xA0;style.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_TILEDWINDOW</strong></p>
+
+			<p>(WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX)</p>
+			</td>
+			<td>The window is an overlapped window. Same as the&#xA0;<strong>WS_OVERLAPPEDWINDOW</strong>&#xA0;style.&#xA0;</td>
+		</tr><tr><td>
+			<p><strong>WS_VISIBLE</strong></p>
+
+			<p>0x10000000L</p>
+			</td>
+			<td>The window is initially visible.<br>
+			This style can be turned on and off by using the&#xA0;<a href="https://msdn.microsoft.com/en-us/library/ms633548(v=VS.85).aspx" rel="nofollow"><strong>ShowWindow</strong></a>&#xA0;or&#xA0;<a href="https://msdn.microsoft.com/en-us/library/ms633545(v=VS.85).aspx" rel="nofollow"><strong>SetWindowPos</strong></a>&#xA0;function.</td>
+		</tr><tr><td>
+			<p><strong>WS_VSCROLL</strong></p>
+
+			<p>0x00200000L</p>
+			</td>
+			<td>The window has a vertical scroll bar.</td>
+		</tr></tbody></table>                                    

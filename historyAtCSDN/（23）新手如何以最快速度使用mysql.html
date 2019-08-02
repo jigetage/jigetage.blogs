@@ -1,0 +1,72 @@
+
+                    <!-- flowchart 箭头图标 勿删 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"/>
+                    </svg>
+                                            <p>&#x6570;&#x636E;&#x5E93;&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;&#x4E0D;&#x5FC5;&#x7406;&#x89E3;&#xFF0C;&#x5494;&#x5494;&#x7684;&#xFF0C;&#x8BB0;&#x5FC6;&#x5C31;&#x5B8C;&#x4E86;&#x3002;</p>
+<p>&#x5148;&#x8BF4;&#x4E00;&#x4E0B;mysql&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;&#x6709;&#x54EA;&#x4E9B;&#xFF1A;</p>
+<p>&#x4E00;&#xFF0C;&#x5982;&#x4F55;&#x767B;&#x5F55;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;</p>
+<p>&#x547D;&#x4EE4;&#x884C;&#x65B9;&#x5F0F;&#xFF1A;<code>mysql -u root -p password</code></p>
+<p>Navicat&#x65B9;&#x5F0F;&#xFF1A;&#x5982;&#x679C;&#x767B;&#x5F55;&#x7684;&#x662F;&#x672C;&#x673A;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x9700;&#x8BBE;&#x7F6E;&#x4E3B;&#x673A;&#x540D;&#x6216;&#x8005;ip&#x5730;&#x5740;&#x4E3A;localhost&#xFF0C;&#x7AEF;&#x53E3;&#x662F;3306&#x5373;&#x53EF;&#x3002;&#x5982;&#x679C;&#x767B;&#x5F55;&#x7684;&#x662F;&#x8FDC;&#x7A0B;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x90A3;&#x4E48;&#x9664;&#x4E86;&#x8BBE;&#x7F6E;&#x4E3B;&#x673A;&#x540D;&#x548C;&#x7AEF;&#x53E3;&#x5916;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x8BBE;&#x7F6E;ssh&#x4FE1;&#x606F;&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x8FDC;&#x7A0B;&#x5B89;&#x88C5;&#x6570;&#x636E;&#x5E93;&#x7684;&#x670D;&#x52A1;&#x5668;&#x5F00;&#x59CB;&#x4E86;ssh&#x670D;&#x52A1;&#x3002;</p>
+<p>&#x4E8C;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;</p>
+<p>&#x5148;&#x8BF4;&#x4E00;&#x4E0B;&#x5C42;&#x6B21;&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x540D; -&gt; &#x6570;&#x636E;&#x5E93; -&gt; &#x8868; &#x8FD9;&#x4E09;&#x5C42;&#x5173;&#x7CFB;&#x5FC5;&#x987B;&#x641E;&#x6E05;&#x695A;&#x3002;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x540D;&#x4E0B;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x8868;&#x3002;</p>
+<p>&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x5E93;&#x7684;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<p><code>SHOW DATABASES;</code> &#x67E5;&#x770B;&#x6240;&#x6709;&#x6570;&#x636E;&#x5E93;</p>
+<p><code>CREATE DATABASE blog;</code> &#x521B;&#x5EFA;blog&#x6570;&#x636E;&#x5E93;</p>
+<p><code>USE blog; SHOW TABLES;</code> &#x67E5;&#x770B;blog&#x6570;&#x636E;&#x5E93;&#x91CC;&#x9762;&#x7684;&#x6240;&#x6709;&#x6570;&#x636E;&#x8868;</p>
+<p><code>DROP DATABASE blog;</code> &#x5220;&#x9664;&#x6570;&#x636E;&#x5E93;blog</p>
+<p>&#x5982;&#x4F55;&#x4FEE;&#x6539;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5BC6;&#x7801;&#x5462;&#xFF1F;</p>
+<pre><code class="prism language-sql"><span class="token comment">#cmd,&#x8FD0;&#x884C;DOS&#xFF0C;cd&#x5230;mysql&#x7684;bin&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x7136;&#x540E;&#x6267;&#x884C;&#x5982;&#x4E0B;</span>
+D:\Mysql\bin<span class="token operator">&gt;</span>mysqladmin <span class="token operator">-</span>u root <span class="token operator">-</span>p password newPwd
+<span class="token comment">#Enter password:(&#x5728;&#x6B64;&#x8F93;&#x5165;&#x539F;&#x5BC6;&#x7801;)</span>
+<span class="token comment">#newPwd&#x6307;&#x7684;&#x662F;&#x65B0;&#x5BC6;&#x7801;</span>
+&#x7136;&#x540E;&#x6253;&#x5F00;mysql &#x76F4;&#x63A5;&#x8F93;&#x5165;&#x65B0;&#x5BC6;&#x7801;&#x5373;&#x53EF;
+</code></pre>
+<p>&#x4E09;&#xFF0C;&#x8868;&#x64CD;&#x4F5C;</p>
+<p>&#x521B;&#x5EFA;&#x6570;&#x636E;&#x8868;</p>
+<pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">USE</span> &#x5E93;&#x540D;<span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> &#x8868;&#x540D; <span class="token punctuation">(</span>&#x5B57;&#x6BB5;&#x540D; <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> &#x5B57;&#x6BB5;&#x540D; <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x521B;&#x5EFA;&#x6570;&#x636E;&#x8868;&#xFF08;&#x590D;&#x6742;&#x5F62;&#x5F0F;&#xFF09;</p>
+<pre><code class="prism language-sql"><span class="token comment">#&#x521B;&#x5EFA;customer&#x8868;&#xFF1A;</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> customers<span class="token punctuation">(</span>
+    id <span class="token keyword">int</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">auto_increment</span><span class="token punctuation">,</span>
+    name <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    address <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    city <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    age <span class="token keyword">int</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    love <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token string">&apos;No habbit&apos;</span><span class="token punctuation">,</span>
+    <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token keyword">engine</span><span class="token operator">=</span><span class="token keyword">InnoDB</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>SHOW COLUMNS FROM auth_user;</code> &#x67E5;&#x770B;&#x6570;&#x636E;&#x8868;auth_user&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5217;</p>
+<p><code>DESCRIBE auth_user;</code> &#x4F5C;&#x7528;&#x540C;&#x4E0A;</p>
+<p><code>DROP TABLE &#x8868;&#x540D;;</code> &#x5220;&#x9664;&#x6570;&#x636E;&#x8868;</p>
+<p><code>DELETE FROM &#x8868;&#x540D;;</code> &#x6E05;&#x7A7A;&#x6570;&#x636E;&#x8868;</p>
+<p>&#x66F4;&#x6539;&#x8868;&#x7ED3;&#x6784;</p>
+<pre><code class="prism language-sql"><span class="token comment">#&#x589E;&#x52A0;&#x4E00;&#x5217;</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> pet <span class="token keyword">add</span> des <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+<span class="token comment">#&#x5220;&#x9664;</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> pet <span class="token keyword">drop</span> <span class="token keyword">column</span> des<span class="token punctuation">;</span>
+</code></pre>
+<p>&#x91CD;&#x547D;&#x540D;&#x8868;</p>
+<pre><code class="prism language-sql"><span class="token keyword">rename</span> <span class="token keyword">table</span> pet <span class="token keyword">to</span> animals<span class="token punctuation">;</span>
+</code></pre>
+<p>&#x6DFB;&#x52A0;id&#x5B57;&#x6BB5;</p>
+<pre><code class="prism language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> pet <span class="token keyword">add</span> id <span class="token keyword">int</span> <span class="token operator">not</span> <span class="token boolean">null</span>
+<span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">auto_increment</span> <span class="token keyword">first</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x8BBE;&#x7F6E;&#x5916;&#x952E;foreign-key</p>
+<p>&#x9996;&#x5148;&#x8BF4;&#x4E00;&#x4E0B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5916;&#x952E;&#x7684;3&#x4E2A;&#x5148;&#x51B3;&#x6761;&#x4EF6;&#xFF1A;</p>
+<p>1.&#x4E24;&#x4E2A;&#x8868;&#x5FC5;&#x987B;&#x662F;InnoDB&#x8868;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;MyISAM&#x8868;&#x4E0D;&#x652F;&#x6301;&#x5916;&#x952E;&#xFF1B;<br>
+&#x3000;&#x3000;&#x3000;2.&#x5916;&#x952E;&#x5217;&#x5FC5;&#x987B;&#x5EFA;&#x7ACB;&#x4E86;&#x7D22;&#x5F15;&#xFF0C;&#x4F46;MySQL 4.1.2&#x4EE5;&#x540E;&#x7684;&#x7248;&#x672C;&#x5728;&#x5EFA;&#x7ACB;&#x5916;&#x952E;&#x65F6;&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x7D22;&#x5F15;&#xFF1B; &#x589E;&#x52A0;&#x7D22;&#x5F15;&#x7684;sql&#x8BED;&#x53E5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><code>alter table table_name add index index_name(column_name);</code><br>
+&#x3000;&#x3000;&#x3000;3.&#x5916;&#x952E;&#x5173;&#x7CFB;&#x7684;&#x4E24;&#x4E2A;&#x8868;&#x7684;&#x5217;&#x5FC5;&#x987B;&#x662F;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x76F8;&#x4F3C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x53EF;&#x4EE5;&#x76F8;&#x4E92;&#x8F6C;&#x6362;&#x7C7B;&#x578B;&#x7684;&#x5217;&#xFF0C;&#x6BD4;&#x5982;int&#x548C;tinyint&#x53EF;&#x4EE5;&#xFF0C;&#x800C;int&#x548C;char&#x5219;&#x4E0D;&#x53EF;&#x4EE5;&#xFF1B;</p>
+<p>&#x4F7F;&#x7528;&#x5916;&#x952E;&#x662F;&#x8981;&#x5206;&#x6E05;referencing table&#x548C;referenced table&#x3002;referencing table&#x4E2D;&#x6CE8;&#x518C;&#x4E86;&#x5916;&#x952E;&#xFF0C;referenced table&#x8868;&#x4E2D;&#x63CF;&#x8FF0;&#x5916;&#x952E;&#x7684;&#x5177;&#x4F53;&#x4FE1;&#x606F;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;on delete cascade; on update cascade;&#x8BBE;&#x7F6E;&#x81EA;&#x52A8;&#x7EA7;&#x8054;&#x7EA6;&#x675F;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x7EA7;&#x8054;&#x7EA6;&#x675F;&#x7684;&#x8BDD;&#xFF0C;&#x5F53;&#x5728;&#x4E3B;&#x8868;&#x4E2D;&#x5220;&#x9664;&#x6216;&#x66F4;&#x65B0;&#x6570;&#x636E;&#xFF0C;&#x5728;&#x5B57;&#x8868;&#x4E2D;&#x6DFB;&#x52A0;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x5982;&#x4F55;&#x7406;&#x89E3;&#x548C;&#x4F7F;&#x7528;&#x5916;&#x952E;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#xFF0C;&#x592A;![img](file:///C:\Users\lenovo\AppData\Local\Temp\SGPicFaceTpBq\4500\08BA1625.jpg)&#x4E86;&#xFF0C;&#x94DC;&#x9523;&#x6E7E;&#x625B;&#x628A;&#x5B50;&#x7684;&#x98CE;&#x683C;&#x3002;</p>
+<p>&#x94FE;&#x63A5;&#x5982;&#x4E0B;&#xFF1A;<a href="https://www.cnblogs.com/programmer-tlh/p/5782451.html" rel="nofollow" data-token="14795f02c180859f738a9f0bdf8a17d5">&#x70B9;&#x51FB;&#x6253;&#x5F00;</a></p>
+<p>ps:</p>
+<p>1&#x3001;MyISAM&#xFF1A;&#x9ED8;&#x8BA4;&#x8868;&#x7C7B;&#x578B;&#xFF0C;&#x5B83;&#x662F;&#x57FA;&#x4E8E;&#x4F20;&#x7EDF;&#x7684;ISAM&#x7C7B;&#x578B;&#xFF0C;ISAM&#x662F;Indexed Sequential Access Method (&#x6709;&#x7D22;&#x5F15;&#x7684;&#x987A;&#x5E8F;&#x8BBF;&#x95EE;&#x65B9;&#x6CD5;) &#x7684;&#x7F29;&#x5199;&#xFF0C;&#x5B83;&#x662F;&#x5B58;&#x50A8;&#x8BB0;&#x5F55;&#x548C;&#x6587;&#x4EF6;&#x7684;&#x6807;&#x51C6;&#x65B9;&#x6CD5;&#x3002;&#x4E0D;&#x662F;&#x4E8B;&#x52A1;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x652F;&#x6301;&#x5916;&#x952E;&#xFF0C;&#x5982;&#x679C;&#x6267;&#x884C;&#x5927;&#x91CF;&#x7684;select&#xFF0C;insert MyISAM&#x6BD4;&#x8F83;&#x9002;&#x5408;&#x3002;</p>
+<p>2&#x3001;InnoDB&#xFF1A;&#x652F;&#x6301;&#x4E8B;&#x52A1;&#x5B89;&#x5168;&#x7684;&#x5F15;&#x64CE;&#xFF0C;&#x652F;&#x6301;&#x5916;&#x952E;&#x3001;&#x884C;&#x9501;&#x3001;&#x4E8B;&#x52A1;&#x662F;&#x4ED6;&#x7684;&#x6700;&#x5927;&#x7279;&#x70B9;&#x3002;&#x5982;&#x679C;&#x6709;&#x5927;&#x91CF;&#x7684;update&#x548C;insert&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;InnoDB&#xFF0C;&#x7279;&#x522B;&#x662F;&#x9488;&#x5BF9;&#x591A;&#x4E2A;&#x5E76;&#x53D1;&#x548C;QPS&#x8F83;&#x9AD8;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+
+                                    

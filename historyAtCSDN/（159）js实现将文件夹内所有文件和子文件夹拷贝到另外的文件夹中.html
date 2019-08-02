@@ -1,0 +1,82 @@
+
+                                            <p>&#x65B9;&#x6848;&#x4E00;&#xFF1A;</p>
+
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;child_process&#x6A21;&#x5757;&#x8C03;&#x7528;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x547D;&#x4EE4;&#x5B8C;&#x6210;&#xFF0C;&#x6BD4;&#x5982;linux&#x4E0B;&#x7684;mv mkdir&#x7B49;&#x547D;&#x4EE4;</p>
+
+<p>&#x65B9;&#x6848;&#x4E8C;&#xFF1A;</p>
+
+<p>&#x7EAF;js&#x65B9;&#x6CD5;</p>
+
+<p>&#x9700;&#x8981;&#x4E24;&#x4E2A;&#x5F15;&#x7528;2&#x4E2A;&#x5E93;</p>
+
+<pre class="has"><code class="hljs">const fs = require(&apos;fs&apos;);
+const path = require(&apos;path&apos;);</code></pre>
+
+<p>&#x5C06;&#x6E90;&#x6587;&#x4EF6;&#x62F7;&#x8D1D;&#x5230;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#xFF1A;</p>
+
+<pre class="has"><code>//! &#x5C06;srcPath&#x8DEF;&#x5F84;&#x7684;&#x6587;&#x4EF6;&#x590D;&#x5236;&#x5230;tarPath
+var copyFile = function(srcPath, tarPath, cb) {
+  var rs = fs.createReadStream(srcPath);
+  rs.on(&apos;error&apos;, function(err) {
+    if (err) {
+      console.log(&apos;read error&apos;, srcPath);
+    }
+    cb &amp;&amp; cb(err);
+  })
+
+  var ws = fs.createWriteStream(tarPath);
+  ws.on(&apos;error&apos;, function(err) {
+    if (err) {
+      console.log(&apos;write error&apos;, tarPath);
+    }
+    cb &amp;&amp; cb(err);
+  })
+  ws.on(&apos;close&apos;, function(ex) {
+    cb &amp;&amp; cb(ex);
+  })
+
+  rs.pipe(ws);
+}</code></pre>
+
+<p>&#x5C06;&#x6E90;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x6240;&#x6709;&#x7684;&#x6587;&#x4EF6;&#x548C;&#x5B50;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x62F7;&#x8D1D;&#x5230;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x5939;&#x4E0B;</p>
+
+<pre class="has"><code>//! &#x5C06;srcDir&#x6587;&#x4EF6;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x3001;&#x6587;&#x4EF6;&#x5939;&#x9012;&#x5F52;&#x7684;&#x590D;&#x5236;&#x5230;tarDir&#x4E0B;
+var copyFolder = function(srcDir, tarDir, cb) {
+  fs.readdir(srcDir, function(err, files) {
+    var count = 0;
+    var checkEnd = function() {
+      ++count == files.length &amp;&amp; cb &amp;&amp; cb();
+    }
+
+    if (err) {
+      checkEnd();
+      return;
+    }
+
+    files.forEach(function(file) {
+      var srcPath = path.join(srcDir, file);
+      var tarPath = path.join(tarDir, file);
+
+      fs.stat(srcPath, function(err, stats) {
+        if (stats.isDirectory()) {
+          console.log(&apos;mkdir&apos;, tarPath);
+          fs.mkdir(tarPath, function(err) {
+            if (err) {
+              console.log(err);
+              return;
+            }
+
+            copyFolder(srcPath, tarPath, checkEnd);
+          });
+        } else {
+          copyFile(srcPath, tarPath, checkEnd);
+        }
+      });
+    });
+
+    //&#x4E3A;&#x7A7A;&#x65F6;&#x76F4;&#x63A5;&#x56DE;&#x8C03;
+    files.length === 0 &amp;&amp; cb &amp;&amp; cb();
+  });
+}</code></pre>
+
+<p>&#x5982;&#x4E0A;&#x6240;&#x793A;&#x3002;</p>                                    

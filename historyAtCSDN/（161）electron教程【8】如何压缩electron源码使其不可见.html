@@ -1,0 +1,36 @@
+
+                                            <p>&#x5148;&#x8BF4;&#x80CC;&#x666F;&#xFF0C;&#x4F7F;&#x7528;electron&#x5F00;&#x53D1;&#x8FC7;&#x7684;&#x540C;&#x5B66;&#x90FD;&#x77E5;&#x9053;&#xFF0C;&#x91C7;&#x7528;electron-packager&#x6253;&#x5305;&#x540E;&#x7684;&#x7A0B;&#x5E8F;&#xFF0C;&#x6E90;&#x4EE3;&#x7801;&#x662F;&#x66B4;&#x9732;&#x5728; outputpath/resources/app&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#xFF0C;&#x5BF9;&#x4E8E;&#x521A;&#x624D;c++&#x8F6C;&#x8FC7;&#x6765;&#x7684;&#x540C;&#x5B66;&#xFF0C;&#x53EF;&#x80FD;&#x975E;&#x5E38;&#x4E0D;&#x9002;&#x5E94;&#x3002;</p>
+
+<p>&#x518D;&#x8BF4;&#x7ED3;&#x8BBA;&#xFF0C;&#x672C;&#x6587;&#x6240;&#x8FF0;&#x65B9;&#x6CD5;&#x53EA;&#x80FD;&#x8BB2;&#x6E90;&#x4EE3;&#x7801;&#x538B;&#x7F29;&#xFF0C;&#x65E0;&#x6CD5;&#x50CF;dll&#x4E00;&#x6837;&#x5C06;c++&#x6E90;&#x4EE3;&#x7801;&#x5B8C;&#x5168;&#x9690;&#x85CF;&#x3002;</p>
+
+<p>&#x6700;&#x540E;&#x8BF4;&#x5177;&#x4F53;&#x538B;&#x7F29;/&#x89E3;&#x538B;&#x7F29;&#x65B9;&#x6CD5;&#x3002;&#x91C7;&#x7528;asar&#x5E93;&#x8FDB;&#x884C;&#x538B;&#x7F29;/&#x89E3;&#x538B;&#x7F29;&#x3002;</p>
+
+<p>&#x538B;&#x7F29;&#xFF1A;</p>
+
+<p>&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;<strong>&#x5168;&#x5C40;</strong>&#x5B89;&#x88C5;asar&#x3002;</p>
+
+<pre class="has"><code class="hljs">npm install asar -g</code></pre>
+
+<p>&#x7B2C;&#x4E8C;&#x6B65;&#xFF0C;&#x538B;&#x7F29;&#x6E90;&#x4EE3;&#x7801;&#x4E3A;app.asar&#x3002;</p>
+
+<pre class="has"><code class="hljs">asar pack ./app app.asar</code></pre>
+
+<p>&#x6CE8;&#x610F;&#xFF0C;./app&#x662F;&#x6E90;&#x4EE3;&#x7801;&#x6240;&#x5728;&#x8DEF;&#x5F84;&#xFF0C;&#x538B;&#x7F29;&#x6587;&#x4EF6;&#x5FC5;&#x987B;&#x547D;&#x540D;&#x4E3A;app.asar&#x3002;&#x8FD9;&#x91CC;&#x7684;app&#x5C31;&#x662F;&#x6307;&#x7684;&#x662F;app&#x8FD9;&#x4E09;&#x4E2A;&#x5B57;&#x6BCD;&#xFF0C;&#x4E0D;&#x80FD;&#x6362;&#x6210;&#x522B;&#x7684;&#x4E1C;&#x897F;&#x3002;</p>
+
+<p>&#x7B2C;&#x4E09;&#x6B65;&#xFF0C;&#x5C06;app.asar&#x6587;&#x4EF6;&#x653E;&#x7F6E;&#x5230;&#xA0;outputpath/resources/&#x4E0B;&#x5373;&#x53EF;&#x3002;</p>
+
+<p>&#x89E3;&#x538B;&#x7F29;&#xFF1A;</p>
+
+<p>&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x641E;&#x5B9A;</p>
+
+<pre class="has"><code class="hljs">asar extract ./app.asar ./app</code></pre>
+
+<p>&#x5C06;app.asar&#x4E2D;&#x6E90;&#x4EE3;&#x7801;&#x8FD8;&#x539F;&#x5230;./app&#x6587;&#x4EF6;&#x5939;&#x5185;</p>
+
+<p>&#xA0;</p>
+
+<p>&#x91CD;&#x70B9;&#x6765;&#x4E86;&#xFF0C;&#x4E0A;&#x8FF0;&#x662F;&#x901A;&#x8FC7;asar&#x624B;&#x52A8;&#x751F;&#x6210;app.asar&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x6709;&#x6CA1;&#x6709;&#x529E;&#x6CD5;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x4E86;&#xFF1F;</p>
+
+<p>&#x7B54;&#x6848;&#x5F53;&#x7136;&#x662F;&#xFF1A;&#x6709;&#xFF01;&#x6CA1;&#x6709;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x6211;&#x4E0D;&#x5C31;&#x626F;&#x738B;&#x516B;&#x728A;&#x5B50;&#x62C9;&#x88E4;&#x515C;&#x5B50;&#x4E86;&#x561B;</p>
+
+<p>&#x53EA;&#x7528;&#x5728;electron-packager&#x6253;&#x5305;&#x547D;&#x4EE4;&#x4E2D;&#x52A0;&#x5165; --asar &#x8FD9;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x5728; outputpath/resources/&#x8DEF;&#x5F84;&#x4E0B;&#x751F;&#x6210;app.asar&#x6587;&#x4EF6;</p>                                    

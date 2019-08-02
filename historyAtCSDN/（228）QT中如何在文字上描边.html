@@ -1,0 +1,9 @@
+
+                                            <p>QLineEdit&#x548C;QLabel&#x63A7;&#x4EF6;&#x4E0D;&#x597D;&#x64CD;&#x4F5C;&#xFF0C;&#x91C7;&#x7528;QTextEdit&#x6765;&#x4EE3;&#x66FF;&#x3002;</p><p>&#x601D;&#x8DEF;&#x5982;&#x4E0B;&#xFF0C;&#x6784;&#x9020;QTextCharFormat&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x5408;&#x6210;&#x5230;QTextEdit&#x7684;&#x6587;&#x672C;&#x4E2D;</p><p>&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p><pre><code class="language-cpp"></code></pre><pre class="cpp"><code class="language-cpp">	//! &#x8BBE;&#x7F6E;&#x6587;&#x672C;&#x8F93;&#x5165;&#x6846;&#x65E0;&#x8FB9;&#x6846;&#x3001;&#x80CC;&#x666F;&#x900F;&#x660E;&#x3001;&#x5B57;&#x4F53;&#x989C;&#x8272;&#x548C;&#x5B57;&#x4F53;&#x52A0;&#x7C97;&#xFF0C;&#x4F7F;&#x5F97;qtextedit&#x548C;qlabel&#x5177;&#x6709;&#x540C;&#x6837;&#x6548;&#x679C;
+	setStyleSheet(&quot;border: none; background-color: transparent; color: #000; font-weight: bold;&quot;);
+	//! &#x8BBE;&#x7F6E;&#x5B57;&#x4F53;&#x9ED1;&#x8272;&#x63CF;&#x8FB9;
+	QTextCharFormat format;
+	format.setTextOutline(QPen(Qt::black, 0.2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+	mergeCurrentCharFormat(format);
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;setText(text);</code></pre><pre><code class="language-cpp">
+</code></pre><p>&#x6CE8;&#x610F;&#x70B9;&#xFF1A;&#x5FC5;&#x987B;&#x5728;&#x5408;&#x6210;&#x4E86;&#x5B57;&#x4F53;&#x63CF;&#x8FB9;&#x4E4B;&#x540E;&#x518D;&#x8BBE;&#x7F6E;&#x663E;&#x793A;&#x6587;&#x5B57;&#xFF0C;&#x8981;&#x4E0D;&#x4E0D;&#x751F;&#x6548;&#x3002;</p>                                    

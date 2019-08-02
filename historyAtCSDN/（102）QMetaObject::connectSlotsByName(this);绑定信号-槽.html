@@ -1,0 +1,20 @@
+
+                                            <p>&#x5728;&#x9605;&#x8BFB;obs-studio&#x6E90;&#x7801;&#x65F6;&#x5019;&#xFF0C;&#x53D1;&#x73B0;&#x597D;&#x591A;&#x69FD;&#x51FD;&#x6570;&#x5E76;&#x6CA1;&#x6709;&#x901A;&#x8FC7;connect&#x65B9;&#x6CD5;&#x7ED1;&#x5B9A;&#x5230;&#x67D0;&#x4E2A;&#x4FE1;&#x53F7;&#x4E0A;&#xFF0C;&#x4E00;&#x76F4;&#x5F88;&#x7591;&#x60D1;&#x3002;&#x7EE7;&#x7EED;&#x9605;&#x8BFB;&#x6E90;&#x7801;&#x624D;&#x53D1;&#x73B0;&#xFF0C;&#x662F;&#x5229;&#x7528;&#x4E86;Qt&#x4E2D;&#x901A;&#x8FC7;&#x7EA6;&#x5B9A;&#x4FE1;&#x53F7;&#x69FD;&#x547D;&#x540D;&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x7684;&#x7ED1;&#x5B9A;&#x3002;</p>
+
+<p>&#x5373;&#x901A;&#x8FC7;QMetaObject::connectSlotsByName(this);&#x5B9E;&#x73B0;&#x3002;</p>
+
+<p>&#x5B98;&#x65B9;&#x6587;&#x6863;&#x4E2D;&#x7684;&#x89E3;&#x91CA;&#x5982;&#x4E0B;&#xFF1A;</p>
+
+<p><a name="connectSlotsByName"></a>[static] void QMetaObject::connectSlotsByName(<a href="qobject.html" rel="nofollow" data-token="6463d34befb9e61c6d000fa3cd1d3b8f">QObject</a> *object)</p>
+
+<p>Searches recursively for all child objects of the given object, and connects matching signals from them to slots of object that follow the following form:</p>
+
+<pre class="has"><code>void on_&lt;object name&gt;_&lt;signal name&gt;(&lt;signal parameters&gt;);</code></pre>
+
+<p>Let&apos;s assume our object has a child object of type QPushButton with the <a href="qobject.html#objectName-prop" rel="nofollow" data-token="6d8d60c87bbed59ca9f0cf7316852a6d">object name</a> button1. The slot to catch the button&apos;s clicked() signal would be:</p>
+
+<pre class="has"><code>void on_button1_clicked();</code></pre>
+
+<p>If object itself has a properly set object name, its own signals are also connected to its respective slots.</p>
+
+<p>&#x5F88;&#x7B80;&#x5355;&#x7684;&#x82F1;&#x6587;&#x3002;</p>                                    

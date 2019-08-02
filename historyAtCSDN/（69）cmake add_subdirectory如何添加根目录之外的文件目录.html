@@ -1,0 +1,20 @@
+
+                                            <pre class="has"><code>// &#x5047;&#x8BBE;add_subdirectory&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x7684;&#x76EE;&#x5F55;&#xFF0C;&#x662F;&#x5F53;&#x524D;cmakelist.txt&#x6587;&#x4EF6;&#x6240;&#x5728;&#x76EE;&#x5F55;&#x7684;&#x540C;&#x7EA7;&#x76EE;&#x5F55;&#x7684;&#x5B50;&#x76EE;&#x5F55;
+if(NOT NEED_DIR)
+
+    set( NEED_DIR ${CMAKE_SOURCE_DIR}/../PEER_DIR)
+
+endif()
+
+if( IS_DIRECTORY ${NEED_DIR} )
+
+    add_subdirectory( ${NEED_DIR}/NEED_DIR NEED_DIROut)
+
+else()
+
+    message(FATAL_ERROR &quot;INVALID FOLDER &apos;NEED_DIR&apos;=${NEED_DIR}&quot; )
+
+endif()
+// &#x64CD;&#x4F5C;&#x5B8C;&#x4E86;&#x4E4B;&#x540E;&#xFF0C;NEED_DIR&#x8F93;&#x51FA;&#x76EE;&#x5F55;&#x7684;&#x540D;&#x5B57;&#x53D8;&#x4E3A;NEED_DIROut</code></pre>
+
+<p>&#xA0;</p>                                    

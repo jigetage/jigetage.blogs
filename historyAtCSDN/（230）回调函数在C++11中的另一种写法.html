@@ -1,0 +1,78 @@
+
+                                            C++11&#x4E4B;&#x524D;&#x5199;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E00;&#x822C;&#x90FD;&#x662F;&#x901A;&#x8FC7;&#xA0;<pre><code class="language-cpp">typedef void CALLBACK (*func)();</code></pre><p>&#x65B9;&#x5F0F;&#x6765;&#x58F0;&#x660E;&#x5177;&#x6709;&#x67D0;&#x79CD;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x3001;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;&#x7684;&#x901A;&#x7528;&#x51FD;&#x6570;&#x6307;&#x9488;&#x3002;&#x4E0A;&#x9762;&#x4F8B;&#x5B50;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A;&#x8FD4;&#x56DE;&#x503C;&#x662F;void&#xFF0C;&#x65E0;&#x53C2;&#x6570;&#x7684;&#x51FD;&#x6570;&#x6307;&#x9488;&#x3002;</p><p>&#x5176;&#x4E2D;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x548C;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; boost::any &#x6216;&#x8005; auto&#x8FDB;&#x884C;&#x6CDB;&#x578B;&#x6307;&#x4EE3;&#x3002;</p><p>C++11&#x5F15;&#x5165;&#x4E86;</p><pre style="text-align:left;font-family:&apos;Courier New&apos;;">#include &lt;functional&gt;</pre><p>&#x5305;&#x542B;2&#x4E2A;&#x51FD;&#x6570;std::function &#x548C; std::bind&#x3002;</p><p>&#x5176;&#x4E2D;std::function&#x5B66;&#x540D;&#x662F;&#x53EF;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x5305;&#x88C5;&#x5668;&#xFF0C;&#x4F5C;&#x7528;&#x548C;&#x4E0A;&#x9762;</p><pre><code class="language-cpp">typedef void CALLBACK (*func)();</code></pre><p>&#x5DEE;&#x4E0D;&#x591A;&#xFF0C;&#x90FD;&#x662F;&#x6307;&#x4EE3;&#x4E00;&#x7EC4;&#x5177;&#x6709;&#x53C2;&#x6570;&#x4E2A;&#x6570;&#x548C;&#x7C7B;&#x578B;&#xFF0C;&#x4EE5;&#x53CA;&#x8FD4;&#x56DE;&#x503C;&#x76F8;&#x540C;&#x7684;&#x51FD;&#x6570;&#x3002;&#x4E3E;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p><pre><code class="language-cpp">#include &quot;stdafx.h&quot;
+#include&lt;iostream&gt;// std::cout
+#include&lt;functional&gt;// std::function
+
+void func(void)
+{
+    std::cout &lt;&lt; __FUNCTION__ &lt;&lt; std::endl;
+}
+
+class Foo
+{
+public:
+    static int foo_func(int a)
+    {
+        std::cout &lt;&lt; __FUNCTION__ &lt;&lt; &quot;(&quot; &lt;&lt; a &lt;&lt; &quot;) -&gt;: &quot;;
+        return a;
+    }
+};
+
+class Bar
+{
+public:
+    int operator() (int a)
+    {
+        std::cout &lt;&lt; __FUNCTION__ &lt;&lt; &quot;(&quot; &lt;&lt; a &lt;&lt; &quot;) -&gt;: &quot;;
+        return a;
+    }
+};
+
+int main()
+{
+    // &#x7ED1;&#x5B9A;&#x666E;&#x901A;&#x51FD;&#x6570;
+    std::function&lt;void(void)&gt; fr1 = func;
+    fr1();
+
+    // &#x7ED1;&#x5B9A;&#x7C7B;&#x7684;&#x9759;&#x6001;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF0C;&#x9700;&#x8981;&#x52A0;&#x4E0A;&#x7C7B;&#x4F5C;&#x7528;&#x57DF;&#x7B26;&#x53F7;
+    std::function&lt;int(int)&gt; fr2 = Foo::foo_func;
+    std::cout &lt;&lt; fr2(100) &lt;&lt; std::endl;
+
+    // &#x7ED1;&#x5B9A;&#x4EFF;&#x51FD;&#x6570;
+    Bar bar;
+    fr2 = bar;
+    std::cout &lt;&lt; fr2(200) &lt;&lt; std::endl;
+
+    return 0;
+}</code></pre><p>&#x5176;&#x4E2D;std::bind&#x5C06;&#x53EF;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#x4E0E;&#x5B9E;&#x53C2;&#x8FDB;&#x884C;&#x7ED1;&#x5B9A;&#xFF0C;&#x7ED1;&#x5B9A;&#x540E;&#x53EF;&#x4EE5;&#x8D4B;&#x503C;&#x7ED9;std::function&#x5BF9;&#x8C61;&#x4E0A;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5360;&#x4F4D;&#x7B26;std::placeholders::&#x51B3;&#x5B9A;&#x7A7A;&#x4F4D;&#x53C2;&#x6570;(&#x5373;&#x7ED1;&#x5B9A;&#x65F6;&#x5C1A;&#x672A;&#x8D4B;&#x503C;&#x7684;&#x53C2;&#x6570;)&#x5177;&#x4F53;&#x4F4D;&#x7F6E;&#x3002;&#x4E3E;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p><pre><code class="language-cpp">#include &quot;stdafx.h&quot;
+#include&lt;iostream&gt;// std::cout
+#include&lt;functional&gt;// std::function
+
+class A
+{
+public:
+    int i_ = 0; // C++11&#x5141;&#x8BB8;&#x975E;&#x9759;&#x6001;&#xFF08;non-static&#xFF09;&#x6570;&#x636E;&#x6210;&#x5458;&#x5728;&#x5176;&#x58F0;&#x660E;&#x5904;&#xFF08;&#x5728;&#x5176;&#x6240;&#x5C5E;&#x7C7B;&#x5185;&#x90E8;&#xFF09;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;
+
+    void output(int x, int y)
+    {
+        std::cout &lt;&lt; x &lt;&lt; &quot;&quot; &lt;&lt; y &lt;&lt; std::endl;
+    }
+
+};
+
+int main()
+{
+    A a;
+    // &#x7ED1;&#x5B9A;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF0C;&#x4FDD;&#x5B58;&#x4E3A;&#x4EFF;&#x51FD;&#x6570;
+    std::function&lt;void(int, int)&gt; fr = std::bind(&amp;A::output, &amp;a, std::placeholders::_1, std::placeholders::_2);
+    // &#x8C03;&#x7528;&#x6210;&#x5458;&#x51FD;&#x6570;
+    fr(1, 2);
+
+    // &#x7ED1;&#x5B9A;&#x6210;&#x5458;&#x53D8;&#x91CF;
+    std::function&lt;int&amp;(void)&gt; fr2 = std::bind(&amp;A::i_, &amp;a);
+    fr2() = 100;// &#x5BF9;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x8D4B;&#x503C;
+    std::cout &lt;&lt; a.i_ &lt;&lt; std::endl;
+
+
+    return 0;
+}</code></pre>                                    
