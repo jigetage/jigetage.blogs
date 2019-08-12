@@ -28,6 +28,7 @@ c:=make(chan int ,3)
 
 如果在已经close掉channel的情况下，for range只会读完channel中的有效数据，然后接着往下执行，而不是向上面情况一样不断的读出0。
 
-补充一点：
-向已经关闭的channel中写入数据会panic
-
+补充：
+1，向已经关闭的channel中写入数据会panic
+2，如何判断管道的写端已关闭？ data, ok := <- chan，如果写端关闭的话，ok是false
+3，如何判断管道中是否存在数据？if len(chan) <= 0 { }
