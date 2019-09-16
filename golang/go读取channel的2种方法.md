@@ -1,6 +1,6 @@
 go读取channel的2种方法
 
-go的gocontinue用法实现了轻量级的线程，可以被大量创建。线程之间用channal通信，以下说说基本用法。
+go的go routine用法实现了轻量级的线程，可以被大量创建。线程之间用channal通信，以下说说基本用法。
 
 ​         channel的buf
 
