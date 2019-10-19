@@ -13,3 +13,4 @@ Linux version 3.10.0-957.27.2.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (g
 查看发行版本：cat /etc/issue（针对ubuntu） or cat /etc/redhat-release（针对centos）
 
 CentOS Linux release 7.6.1810 (Core)
+
