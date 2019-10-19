@@ -2,13 +2,17 @@
 
 select * from table1 as t1
 
-left/right/inner/outer join table2 as t2
-
-on (t1.column1 = t2.column1 and t1.column2 = t2.column2)
+left/right/inner/outer join table2 as t2 on (t1.column1 = t2.column1 and t1.column2 = t2.column2)
 
 where t1.column3 = condition and t2.column3 = condition
 
-order by t1.column4
+group by column
+
+having column > value
+
+order by t1.column4 desc/asc
+
+limit 10
 
 
 
