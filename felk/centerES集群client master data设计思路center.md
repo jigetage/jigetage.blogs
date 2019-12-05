@@ -1,4 +1,4 @@
-# <center>ES集群client master data设计思路</center>
+# ES集群client master data设计思路
 
 ## 为什么需要设置master node、data node和client node
 
