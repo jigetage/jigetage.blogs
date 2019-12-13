@@ -1,6 +1,6 @@
 go中defer和return的执行顺序
 
- 
+ 结论：先调return，再调defer，如果return和defer中有相同的变量，那么会defer中的逻辑会覆盖return终端逻辑
 
 我将下面的代码放入了 double.go 文件内
 
@@ -28,9 +28,7 @@ func main() {
 
 反汇编来查看内容
 
-![img](https:////upload-images.jianshu.io/upload_images/4759699-7f62a954f24637f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
-
-
+![https:////upload-images.jianshu.io/upload_images/4759699-7f62a954f24637f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp]()
 
 注意：十进制的200 转化成16进制是 0xc8
 
