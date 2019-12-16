@@ -18,8 +18,8 @@ type hchan struct {
 	elemtype *_type         // 元素类型
 	sendx    uint           // 队列下标，指示元素写入时存放到队列中的位置
 	recvx    uint           // 队列下标，指示元素从队列的该位置读出
-	recvq    waitq          // 等待读消息的goroutine队列
-	sendq    waitq          // 等待写消息的goroutine队列
+	recvq    waitq          // 等待读消息的goroutine队列，即这些goroutine是因为此chan不能读而阻塞
+	sendq    waitq          // 等待写消息的goroutine队列，即这些goroutine是因为此chan不能写而阻塞
 	lock mutex              // 互斥锁，chan不允许并发读写
 }
 ```
