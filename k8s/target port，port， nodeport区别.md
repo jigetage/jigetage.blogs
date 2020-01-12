@@ -18,7 +18,7 @@ nodeport：node port模式的service暴露出的端口，集群外应用可以�
 2. port
 k8s集群内部服务之间访问service的入口。即clusterIP:port是service暴露在clusterIP上的端口。
 
-mysql容器暴露了3306端口（参考DockerFile），集群内其他容器通过33306端口访问mysql服务，但是外部流量不能访问mysql服务，因为mysql服务没有配置NodePort。对应的service.yaml如下：
+mysql容器暴露了33306端口（参考DockerFile），集群内其他容器通过33306端口访问mysql服务，但是外部流量不能访问mysql服务，因为mysql服务没有配置NodePort。对应的service.yaml如下：
 
 `
 
