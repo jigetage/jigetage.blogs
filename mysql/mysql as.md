@@ -16,4 +16,4 @@ select *from B;
 
 二：as可以作为连接语句的操作符。
 sql：create table  tablename as select * from tablename2;
-解释：上面语句的意思就是先获取到tablename表中的所有记录，之后创建一张tablename表，结构和tablename2表相同，记录为后面语句的查询结果。
+解释：上面语句的意思就是先获取到tablename2表中的所有记录，之后创建一张tablename表，结构和tablename2表相同，记录为后面语句的查询结果。
